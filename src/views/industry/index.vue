@@ -1,10 +1,10 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-11-22 09:39:52
+ * @LastEditTime: 2024-12-09 14:08:19
  * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\industry\index.vue
+ * @FilePath: \shui-li\src\views\industry\index.vue
  * 
 -->
 <template>
@@ -60,28 +60,33 @@ const router = useRouter();
 const tags = ref([
     {
         id: '45e1cd70-350a-4ff0-8550-fe19e201d3a9',
-        text: '行业信息',
+        text: '产教融合',
         type: '2',
-        icon: 'icon-hangye'
+        icon: 'icon-chanpin'
     },
     {
         id: 'bd0c3431-c62b-4c22-bde5-906795644070',
-        text: '行业标准',
+        text: '城市体检',
+        type: '2',
+        icon: 'icon-chengshi'
+    },
+    {
+        id: 'ff772cd3-5e22-489e-b923-3b7f96f7993c',
+        text: '学生案例',
         type: '2',
         icon: 'icon-wodekecheng'
     },
-    { id: 'ff772cd3-5e22-489e-b923-3b7f96f7993c', text: '就业信息', type: '2', icon: 'icon-anli' },
     {
         id: 'b0917cb3-ba7d-432b-aaaa-0d4936ab18a8',
-        text: '企业文化',
+        text: '数字教材',
         type: '1',
-        icon: 'icon-wenhua'
+        icon: 'icon-shuzijiaocai'
     },
     {
         id: '769e3ef6-2fe3-4dbe-a4c0-82c18dd7b501',
-        text: '行业新技术',
+        text: '知识图谱',
         type: '2',
-        icon: 'icon-jishufuwu'
+        icon: 'icon-tuozhan'
     }
 ]);
 const total = ref(100);

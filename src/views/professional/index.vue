@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 10:29:51
+ * @LastEditTime: 2024-12-09 14:14:42
  * @LastEditors: 南桥几许
  * @Description: 
  * @FilePath: \shui-li\src\views\professional\index.vue
@@ -63,33 +63,31 @@ const tags = ref([
         id: '4ef2a4d8-ef2d-4c56-9e37-318eb71f068f',
         text: '专业介绍',
         type: '1',
-        icon: 'icon-jieshaoxinxi'
+        icon: 'icon-jieshaoxinxi_o'
     },
     {
         id: 'a11c4caf-14f1-429c-9d68-e218afebe302',
         text: '专业标准',
         type: '1',
-        icon: 'icon-xinrenkaohebiaozhun'
+        icon: 'icon-zhuanyemingcheng'
     },
     {
         id: 'b3e1ad6e-ec81-4434-950a-1234b2556c82',
-        text: '人培方案',
+        text: '行业标准',
         type: '1',
-        icon: 'icon-fanganku'
+        icon: 'icon-hangye'
     },
     {
         id: '5e8cab26-f109-4e95-b1c0-3d7f4be102bb',
-        text: '课程标准',
+        text: '职业标准',
         type: '1',
-        icon: 'icon-wodekecheng'
+        icon: 'icon-zhiye'
     },
-    { id: '08183752-d840-41c0-bc12-485375b20119', text: '教学案例', type: '2', icon: 'icon-anli' },
-    {
-        id: '9ff40f61-563a-46ec-b65c-c96d21d5089c',
-        text: '数字教材',
-        type: '2',
-        icon: 'icon-jieshaoxinxi'
-    }
+    { id: '08183752-d840-41c0-bc12-485375b20119', text: '人培方案', type: '2', icon: 'icon-renpeibiaozhun' },
+    { id: '08183752-d840-41c0-bc12-485375b20119', text: '课程标准', type: '2', icon: 'icon-tongshikecheng' },
+    { id: '08183752-d840-41c0-bc12-485375b20119', text: '专业课程体系', type: '2', icon: 'icon-zhuanyezhuanyeke' },
+    { id: '08183752-d840-41c0-bc12-485375b20119', text: '优秀教学案例', type: '2', icon: 'icon-tuijian' },
+    
 ]);
 const total = ref(100);
 const tagsType = ref('1');

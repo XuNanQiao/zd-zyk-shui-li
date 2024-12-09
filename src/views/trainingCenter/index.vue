@@ -60,22 +60,27 @@ const router = useRouter();
 const tags = ref([
     {
         id: '7f22d172-2e3d-447e-8c1b-ec73d3f8a990',
-        text: '社会培训',
+        text: '行业岗位培训',
         type: '2',
-        icon: 'icon-minzhengtubiao1-49'
+        icon: 'icon-gangweiguanli'
     },
-    { id: 'dd8e207f-f556-41b4-a298-e57bd01285a1', text: '企业培训', type: '2', icon: 'icon-qiye' },
+    {
+        id: 'dd8e207f-f556-41b4-a298-e57bd01285a1',
+        text: '创新创业培训',
+        type: '2',
+        icon: 'icon-chuangye3'
+    },
     {
         id: '821472e3-14f2-4cf5-a5e9-ad2686ac8935',
-        text: '职业认证培训',
+        text: '赛证融通培训',
         type: '2',
-        icon: 'icon-zhiye'
+        icon: 'icon-bisai'
     },
     {
         id: '7f021f5f-6d9c-4e71-8ba6-7de52c7b06ef',
-        text: '“兴农人”培训',
+        text: '虚拟仿真培训',
         type: '2',
-        icon: 'icon-nongminrengongzhongdiboboganhuogengzuo'
+        icon: 'icon-VRD'
     }
 ]);
 const total = ref(100);

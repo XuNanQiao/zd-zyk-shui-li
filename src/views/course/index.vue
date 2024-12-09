@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 11:39:33
+ * @LastEditTime: 2024-12-09 14:20:25
  * @LastEditors: 南桥几许
  * @Description: 
  * @FilePath: \shui-li\src\views\course\index.vue
@@ -15,8 +15,9 @@
                 <img class="page-left-bg" src="@/assets/images/banner/course-left-bg.png" />
                 <div class="list">
                     <div class="item" :class="{ active: search.tags    == item.text }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
+                        <div class="befor-icon iconfont" :class="item.icon"></div>
                         <div class="text">{{ item.text }}</div>
-                        <div class="after-icon iconfont icon-youjiantou"></div>
+<!--                         <div class="after-icon iconfont icon-youjiantou"></div> -->
                     </div>
                 </div>
             </div>
@@ -33,10 +34,10 @@
                                 <span class="iconfont icon-jiaoshi"></span>
                                 {{item.userName}}
                             </div>
-                           <!--  <div>
+                            <!--  <div>
                                 <span class="iconfont icon-yanjing"></span>
                                 {{ item.peopleNumber}}
-                            </div> -->
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -67,39 +68,27 @@ const tags = ref([
     // { id: '', text: '数字教材', type: '2', icon: 'icon-jieshaoxinxi' },
     {
         id: '42196917-a72c-4ce2-8ef0-e64b2c2a67f9',
-        text: '食品生物技术',
+        text: '专业基础课',
         type: '2',
-        icon: 'icon-xinrenkaohebiaozhun'
+        icon: 'icon-basic-info'
     },
     {
         id: '0374f328-12c4-4e64-b866-6e12efe321cd',
-        text: '食品营养与健康',
+        text: '专业核心课',
         type: '2',
-        icon: 'icon-fanganku'
+        icon: 'icon-hexin'
     },
     {
         id: '22659ac1-a946-47cc-9ed1-4f30957ec418',
-        text: '食品智能加工技术',
+        text: '专业拓展课',
         type: '1',
-        icon: 'icon-wodekecheng'
+        icon: 'icon-tuozhan'
     },
     {
         id: '952e432f-5aa9-41b5-a1e2-b84e284e206f',
-        text: '食品检验检测技术',
+        text: '实习实训课',
         type: '1',
-        icon: 'icon-wodekecheng'
-    },
-    {
-        id: '5ff5a49d-5335-4c8b-b7ae-e45f439cbe53',
-        text: '粮食储运与质量安全',
-        type: '1',
-        icon: 'icon-wodekecheng'
-    },
-    {
-        id: 'da7f96bc-1d41-46d2-8427-8fc3dbda6fb3',
-        text: '粮食工程技术与管理',
-        type: '1',
-        icon: 'icon-wodekecheng'
+        icon: 'icon-shixun'
     }
 ]);
 const total = ref(100);

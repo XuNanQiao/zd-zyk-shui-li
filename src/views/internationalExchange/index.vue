@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 13:48:42
+ * @LastEditTime: 2024-12-09 14:05:37
  * @LastEditors: 南桥几许
  * @Description: 
  * @FilePath: \shui-li\src\views\internationalExchange\index.vue
@@ -14,35 +14,32 @@
             <div class="page-left">
                 <img class="page-left-bg" src="@/assets/images/banner/internationalExchange-left-bg.png" />
                 <div class="list">
-                    <div class="item" :class="{ active: search.tags    == item.text }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
+                    <div class="item" :class="{ active: search.nodeId  == item.id }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
+                        <div class="befor-icon iconfont" :class="item.icon"></div>
                         <div class="text">{{ item.text }}</div>
                         <div class="after-icon iconfont icon-youjiantou"></div>
                     </div>
                 </div>
             </div>
             <div class="page-right">
-                <div class="cour-list">
+                <div class="data-list-text" v-if="tagsType=='1'">
+                    <div class="data-item" @click="goDetail(item)" v-for="(item, index) in dataList" :key="index">
+                        <div class="item-text-icon"></div>
+                        <div class="item-text ellipsis">{{ item.DocTitle }}</div>
+                        <div class="item-tips">{{ item.CreateTime }}</div>
+                    </div>
+                </div>
+                <div class="cour-list" v-else-if="tagsType=='2'">
                     <div class="course-item" @click="goDetail(item)" v-for="(item,index) in dataList" :key="index">
                         <div class="course-img-box">
-                            <img class="course-img" :src="item.imageUrl" alt />
+                            <img class="course-img" :src="item.file" alt />
                         </div>
-                        <div class="course-name ellipsis">{{ item.name }}</div>
-                        <div class="course-tips ellipsis">{{ item.schoolName }}</div>
-                        <div class="course-bottom">
-                            <div>
-                                <span class="iconfont icon-jiaoshi"></span>
-                                {{item.userName}}
-                            </div>
-                           <!--  <div>
-                                <span class="iconfont icon-yanjing"></span>
-                                {{ item.peopleNumber}}
-                            </div> -->
-                        </div>
+                        <div class="course-name ellipsis">{{ item.DocTitle }}</div>
                     </div>
                 </div>
                 <div class="page-bottom">
                     <el-config-provider :locale="zhCn">
-                        <el-pagination v-model:current-page="search.pageNum " v-model:page-size="search.pageSize" background layout="prev, pager, next, jumper" :total="total" @size-change="getList" @current-change="getList" />
+                        <el-pagination v-model:current-page="search.page " v-model:page-size="search.pageSize" background layout="prev, pager, next, jumper" :total="total" @size-change="getList" @current-change="getList" />
                     </el-config-provider>
                 </div>
             </div>
@@ -55,84 +52,60 @@ import { ref, computed, reactive, onMounted, getCurrentInstance } from 'vue';
 const { proxy } = getCurrentInstance();
 import { ProfessionalApi } from '@/assets/api/professionalApi';
 const professionalApi = new ProfessionalApi();
-import { HomeApi } from '@/assets/api/home';
-const homeApi = new HomeApi();
-
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import { useRouter, useRoute } from 'vue-router';
 import { ztreeAll } from '@/assets/api/common';
 let route = useRoute();
 const router = useRouter();
 const tags = ref([
-    // { id: '', text: '数字教材', type: '2', icon: 'icon-jieshaoxinxi' },
     {
-        id: '42196917-a72c-4ce2-8ef0-e64b2c2a67f9',
-        text: '食品生物技术',
+        id: '5321afae-9eb1-4ca9-b913-76de5cdeb5b4',
+        text: '职教出海案例',
         type: '2',
-        icon: 'icon-xinrenkaohebiaozhun'
+        icon: 'icon-chuhaizhunbei'
     },
     {
-        id: '0374f328-12c4-4e64-b866-6e12efe321cd',
-        text: '食品营养与健康',
+        id: '8854252a-83da-4afc-b2a1-2f3ee371c4c8',
+        text: '国际交流资源',
         type: '2',
-        icon: 'icon-fanganku'
-    },
-    {
-        id: '22659ac1-a946-47cc-9ed1-4f30957ec418',
-        text: '食品智能加工技术',
-        type: '1',
-        icon: 'icon-wodekecheng'
-    },
-    {
-        id: '952e432f-5aa9-41b5-a1e2-b84e284e206f',
-        text: '食品检验检测技术',
-        type: '1',
-        icon: 'icon-wodekecheng'
-    },
-    {
-        id: '5ff5a49d-5335-4c8b-b7ae-e45f439cbe53',
-        text: '粮食储运与质量安全',
-        type: '1',
-        icon: 'icon-wodekecheng'
-    },
-    {
-        id: 'da7f96bc-1d41-46d2-8427-8fc3dbda6fb3',
-        text: '粮食工程技术与管理',
-        type: '1',
-        icon: 'icon-wodekecheng'
+        icon: 'icon-guojiwuliu'
     }
 ]);
 const total = ref(100);
+const tagsType = ref('1');
 const dataList = ref([]);
 const search = reactive({
-    tags: '',
+    nodeId: '',
     pageSize: 9,
-    sort: 'create_time',
-    pageNum: 1
+    page: 1
 });
 const handChange = (item: any) => {
-    search.tags = item.text;
+    search.nodeId = item.id;
+    tagsType.value = item.type;
     getList();
 };
 const getList = () => {
-    homeApi.getCourseList3(search).then((res) => {
-        total.value = res.total;
-        dataList.value = res.rows;
+    professionalApi.newmaterialMaterial(search).then((res) => {
+        total.value = res.materialCount;
+        dataList.value = JSON.parse(res.list).obj;
     });
 };
 const goDetail = (item: any) => {
-    window.open(`https://zyk.icve.com.cn/courseDetailed?id=${item.id}`, '_blank', 'noreferrer');
+    window.open(`https://zyk.icve.com.cn/materialDetailed?id=${item.id}`, '_blank', 'noreferrer');
 };
 onMounted(async () => {
-    proxy.bus.on('course' + 'Reload', (index: number) => {
-        search.tags = tags.value[index].text;
+    proxy.bus.on('internationalExchange' + 'Reload', (index: number) => {
+        search.nodeId = tags.value[index].id;
+        tagsType.value = tags.value[index].type;
         getList();
     });
     if (route.query.index) {
         let index = Number(route.query.index);
-        search.tags = tags.value[index].text;
+        search.nodeId = tags.value[index].id;
+        tagsType.value = tags.value[index].type;
     } else {
-        search.tags = tags.value[0].text;
+        search.nodeId = tags.value[0].id;
+        tagsType.value = tags.value[0].type;
     }
     getList();
 });
@@ -146,37 +119,6 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/internationalExchange-bg.png');
-    }
-}
-.course-name {
-    text-align: left !important;
-}
-.course-tips {
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    line-height: 23.17px;
-    color: rgba(56, 56, 56, 1);
-    text-align: left;
-    margin-top: 5px;
-}
-.course-bottom {
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px solid var(--bg-color);
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    line-height: 24px;
-    color: rgba(56, 56, 56, 1);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .iconfont {
-        font-size: 20px;
-        color: var(--title-color);
-        margin-right: 9px;
     }
 }
 </style>
