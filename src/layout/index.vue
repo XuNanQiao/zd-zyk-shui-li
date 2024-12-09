@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2024-12-09 10:59:46
+ * @LastEditTime: 2024-12-09 14:49:34
  * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\layout\index.vue
@@ -73,7 +73,7 @@
             </template>
         </el-menu>
     </div>
-    <router-view> </router-view>
+    <router-view></router-view>
     <div class="footer">
         <div class="footer-inner">
             <div class="top">
@@ -86,53 +86,17 @@
                     <h3 class="footer-logo">高等教育出版社</h3>
                     <div class="footer-text">
                         <p>
-                            <a
-                                href="https://www.icve.com.cn/portal_new/apply/apply.html"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                开通项目申请表
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/apply/apply.html" target="_blank" class="ve-link">开通项目申请表</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=1"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                平台简介
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=1" target="_blank" class="ve-link">平台简介</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=2"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                知识产权
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=2" target="_blank" class="ve-link">知识产权</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=3"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                免责声明
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=3" target="_blank" class="ve-link">免责声明</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=4"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                意见反馈
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=4" target="_blank" class="ve-link">意见反馈</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=5"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                联系我们
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=5" target="_blank" class="ve-link">联系我们</a>
                             &nbsp;|&nbsp;
                             <a
                                 href="https://www.icve.com.cn/portal_new/platform/policy.html"
@@ -149,10 +113,7 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                <a
-                    target="_blank"
-                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007836"
-                >
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007836">
                     <p>京公网安备 11010202007836号</p>
                 </a>
                 <span>Copyright©2014-2019 高等教育出版社</span>
@@ -201,12 +162,12 @@ const menuList = ref([
         children: [
             { path: '/professional?index=0', name: '专业介绍' },
             { path: '/professional?index=1', name: '专业标准' },
-            { path: '/professional?index=1', name: '行业标准' },
-            { path: '/professional?index=1', name: '职业标准' },
-            { path: '/professional?index=2', name: '人培方案' },
-            { path: '/professional?index=3', name: '课程标准' },
-            { path: '/professional?index=4', name: '专业课程体系' },
-            { path: '/professional?index=5', name: '优秀教学案例' },
+            { path: '/professional?index=2', name: '行业标准' },
+            { path: '/professional?index=3', name: '职业标准' },
+            { path: '/professional?index=4', name: '人培方案' },
+            { path: '/professional?index=5', name: '课程标准' },
+            { path: '/professional?index=6', name: '专业课程体系' },
+            { path: '/professional?index=7', name: '优秀教学案例' }
         ]
     },
     // {
@@ -227,7 +188,7 @@ const menuList = ref([
             { path: '/course?index=0', name: '专业基础课' },
             { path: '/course?index=1', name: '专业核心课' },
             { path: '/course?index=2', name: '专业拓展课' },
-            { path: '/course?index=3', name: '实习实训课' },
+            { path: '/course?index=3', name: '实习实训课' }
         ]
     },
     { path: '/sourceMaterial', name: '素材中心' },
@@ -242,6 +203,44 @@ const menuList = ref([
         ]
     },
     {
+        path: '/industry',
+        name: '特色资源中心',
+        children: [
+            { path: '/industry?index=0', name: '产教融合' },
+            { path: '/industry?index=1', name: '城市体检' },
+            { path: '/industry?index=2', name: '学生案例' },
+            { path: '/industry?index=3', name: '数字教材' },
+            { path: '/industry?index=4', name: '知识图谱' }
+        ]
+    },
+    {
+        path: '/internationalExchange',
+        name: '国际交流与合作',
+        children: [
+            { path: '/internationalExchange?index=0', name: '职教出海案例' },
+            { path: '/internationalExchange?index=1', name: '国际交流资源' }
+        ]
+    },
+
+    {
+        path: '/popularization',
+        name: '评测考核试题库',
+        children: [
+            { path: '/popularization?index=0', name: '课程试题库' },
+            { path: '/popularization?index=1', name: '职业技能试题库' },
+            { path: '/popularization?index=2', name: '技能竞赛试题库' },
+            { path: '/popularization?index=3', name: '1+X证书测试题库' }
+        ]
+    },
+    {
+        path: '/research',
+        name: '课程思政案例库',
+        children: [
+            { path: '/research?index=0', name: '思政课程' },
+            { path: '/research?index=1', name: '思政案例' }
+        ]
+    }
+    /*   {
         path: '/virtualSimulation',
         name: '特色资源中心',
         children: [
@@ -259,26 +258,7 @@ const menuList = ref([
             { path: '/internationalExchange?index=0', name: '职教出海案例' },
             { path: '/internationalExchange?index=1', name: '国际交流资源' },
         ]
-    },
-    {
-        path: '/popularization',
-        name: '评测考核试题库',
-        children: [
-            { path: '/popularization?index=0', name: '课程试题库' },
-            { path: '/popularization?index=1', name: '职业技能试题库' },
-            { path: '/popularization?index=1', name: '技能竞赛试题库' },
-            { path: '/popularization?index=1', name: '1+X证书测试题库' },
-        ]
-    },
-    {
-        path: '/research',
-        name: '课程思政案例库',
-        children: [
-            { path: '/research?index=0', name: '思政课程' },
-            { path: '/research?index=1', name: '思政案例' },
-        ]
-    },
-
+    } */
 ]);
 const logout = async () => {
     logoutApi(token.value).then((res: any) => {
@@ -339,7 +319,7 @@ const toNext = () => {
 };
 const logo = ref();
 
-const linksList = ref()
+const linksList = ref();
 onMounted(() => {
 
     getLink().then((res: any) => {
@@ -429,7 +409,6 @@ onMounted(() => {
                 border-radius: 28px;
                 height: 32px;
             }
-
             .icon {
                 font-size: 20px;
             }
