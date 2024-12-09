@@ -1,0 +1,253 @@
+@mixin ellipsis($lines, ) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+  /* 控制显示的行数 */
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.professional-banner {
+  width: 100%;
+  height: 378px;
+  // background-image: url('@/assets/images/professional/bg.png');
+  background-size: 100% 100%;
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.page-content {
+  --max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 80px;
+
+  .page-left {
+    width: 327px;
+    height: --max-height;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+
+    .page-left-bg {
+      background-image: url('@/assets/images/left-bg.png');
+      background-size: 100% 100%;
+      width: 327px;
+      height: 119px;
+      opacity: 1;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .list {
+      .item {
+        width: 100%;
+        height: 77px;
+        opacity: 1;
+        padding: 0px 23px 0px 34px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+
+        .befor-icon {
+          color: rgba(10, 120, 96, 1);
+          font-size: 25px;
+          margin-right: 22px;
+          flex-shrink: 0;
+        }
+
+        .text {
+          width: 100%;
+          font-size: 25px;
+          font-weight: 700;
+          letter-spacing: 0px;
+          line-height: 33px;
+          color: rgba(10, 120, 96, 1);
+        }
+
+        .after-icon {
+          color: rgba(10, 120, 96, 1);
+          font-weight: 700;
+          flex-shrink: 0;
+          font-size: 17.4px;
+          font-weight: bold;
+        }
+      }
+
+      .active {
+        background: rgba(10, 120, 96, 1);
+
+        .befor-icon,
+        .text,
+        .after-icon {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .page-right {
+    width: 994px;
+    height: --max-height;
+    opacity: 1;
+    position: relative;
+
+    .data-list-text {
+      width: 100%;
+      padding: 66px 34px;
+
+      .data-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 41px;
+        justify-content: space-between;
+        position: relative;
+        cursor: pointer;
+
+        .item-text {
+          font-size: 20px;
+          font-weight: 400;
+          letter-spacing: 0px;
+          line-height: 28.96px;
+          color: rgba(0, 0, 0, 1);
+          text-align: left;
+          padding-left: 23px;
+          position: relative;
+
+          &::before {
+            content: '';
+            width: 4.17px;
+            height: 25px;
+            opacity: 1;
+            background: rgba(10, 120, 96, 1);
+            position: absolute;
+            left: 0;
+            top: 2px;
+          }
+        }
+
+
+        .item-tips {
+          margin-left: 44px;
+          flex-shrink: 0;
+          font-size: 20px;
+          font-weight: 400;
+          letter-spacing: 0px;
+          line-height: 28.96px;
+          color: rgba(56, 56, 56, 1);
+          text-align: left;
+
+        }
+      }
+
+      .data-item:hover {
+
+
+        .item-text {
+          color: rgba(10, 120, 96, 1);
+        }
+      }
+    }
+
+    .cour-list {
+      $itemwidth: 309px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 309px);
+      grid-gap: 48px 25px;
+      justify-items: center;
+      margin-left: 17px;
+
+      .course-item {
+        width: $itemwidth;
+        background-color: #fff;
+        border-radius: 0 0 5px 5px;
+        cursor: pointer;
+
+        .course-img-box {
+          height: 174px;
+          width: 100%;
+          box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+          overflow: hidden;
+
+          .course-img {
+            height: 174px;
+            width: 100%;
+            object-fit: cover;
+            transition: .5s;
+          }
+
+          &:hover .course-img {
+            transform: scale(1.5);
+          }
+        }
+
+
+
+        .course-name {
+          font-size: 20px;
+          font-weight: 400;
+          letter-spacing: 0px;
+          line-height: 28.96px;
+          color: rgba(0, 0, 0, 1);
+          text-align: center;
+          margin-top: 17px;
+        }
+      }
+    }
+  }
+}
+
+.page-bottom {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  .el-pagination {
+    background: #fff !important;
+    padding: 10px 12px !important;
+    border-radius: 5px !important;
+
+    .btn-prev,
+    .number,
+    .more,
+    .btn-next {
+      font-family: 'Inter' !important;
+      background: #fff !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: rgba(64, 65, 69, 1) !important;
+    }
+
+    .is-active {
+      background: rgba(228, 244, 233, 1) !important;
+      color: rgba(10, 120, 96, 1) !important;
+    }
+
+  }
+}
+
+.nothing {
+  img {
+    width: 700px;
+    height: 558.95px;
+    mix-blend-mode: luminosity;
+    opacity: 1;
+    display: block;
+    margin: auto;
+  }
+  .nothing-text{
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 28.96px;
+    color: rgba(85, 85, 85, 1);
+    text-align: center;
+  }
+}
