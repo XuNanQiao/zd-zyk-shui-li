@@ -8,12 +8,13 @@
  * 
 -->
 <template>
-    <div class="professional-page">
+    <div class="page-box">
         <div class="professional-banner"></div>
         <div class="page-content">
             <div class="page-left">
-                <div class="page-left-bg"></div>
+                <img class="page-left-bg" src="@/assets/images/banner/research-left-bg.png"/>
                 <div class="list">
+                    
                     <div
                         class="item"
                         :class="{ active: search.nodeId  == item.id }"
@@ -25,6 +26,7 @@
                         <div class="text">{{ item.text }}</div>
                         <div class="after-icon iconfont icon-youjiantou"></div>
                     </div>
+                    
                 </div>
             </div>
             <div class="page-right">
@@ -35,6 +37,7 @@
                         v-for="(item, index) in dataList"
                         :key="index"
                     >
+                        <div class="item-text-icon"></div>
                         <div class="item-text ellipsis">{{ item.DocTitle  }}</div>
                         <div class="item-tips">{{ item.CreateTime  }}</div>
                     </div>
@@ -131,11 +134,7 @@ onMounted(async () => {
 $--el-pagination-button-bg-color: '#fff';
 
 // 引入 Element UI 的主样式文件
-.professional-page {
-    width: 100%;
-    min-height: 100%;
-    background: #fff;
-
+.page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/research-bg.png');
     }

@@ -1,68 +1,47 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-11-22 09:42:07
+ * @LastEditTime: 2024-12-09 11:35:07
  * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\virtualSimulation\index.vue
+ * @FilePath: \shui-li\src\views\virtualSimulation\index.vue
  * 
 -->
 <template>
-    <div class="professional-page">
+    <div class="page-box">
         <div class="professional-banner"></div>
         <div class="page-content">
             <div class="page-left">
-                <div class="page-left-bg"></div>
+                <img class="page-left-bg" src="@/assets/images/banner/virtualSimulation-left-bg.png" />
                 <div class="list">
-                    <div
-                        class="item"
-                        :class="{ active: search.nodeId  == item.id }"
-                        v-for="(item, index) in tags"
-                        :key="index"
-                        @click="handChange(item)"
-                    >
-                        <div class="befor-icon iconfont " :class="item.icon"></div>
+                    
+                    <div class="item" :class="{ active: search.nodeId  == item.id }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
+                        <div class="befor-icon iconfont" :class="item.icon"></div>
                         <div class="text">{{ item.text }}</div>
                         <div class="after-icon iconfont icon-youjiantou"></div>
                     </div>
+                    
                 </div>
             </div>
             <div class="page-right">
                 <div class="data-list-text" v-if="tagsType=='1'">
-                    <div
-                        class="data-item"
-                        @click="goDetail(item)"
-                        v-for="(item, index) in dataList"
-                        :key="index"
-                    >
-                        <div class="item-text ellipsis">{{ item.DocTitle  }}</div>
-                        <div class="item-tips">{{ item.CreateTime  }}</div>
+                    <div class="data-item" @click="goDetail(item)" v-for="(item, index) in dataList" :key="index">
+                        <div class="item-text-icon"></div>
+                        <div class="item-text ellipsis">{{ item.DocTitle }}</div>
+                        <div class="item-tips">{{ item.CreateTime }}</div>
                     </div>
                 </div>
                 <div class="cour-list" v-else-if="tagsType=='2'">
-                    <div
-                        class="course-item"
-                        @click="goDetail(item)"
-                        v-for="(item,index) in dataList"
-                        :key="index"
-                    >
-                        <div class="course-img-box ">
-                            <img class="course-img" :src="item.file" alt="" />
+                    <div class="course-item" @click="goDetail(item)" v-for="(item,index) in dataList" :key="index">
+                        <div class="course-img-box">
+                            <img class="course-img" :src="item.file" alt />
                         </div>
-                        <div class="course-name ellipsis ">{{ item.DocTitle }}</div>
+                        <div class="course-name ellipsis">{{ item.DocTitle }}</div>
                     </div>
                 </div>
                 <div class="page-bottom">
                     <el-config-provider :locale="zhCn">
-                        <el-pagination
-                            v-model:current-page="search.page "
-                            v-model:page-size="search.pageSize"
-                            background
-                            layout="prev, pager, next, jumper"
-                            :total="total"
-                            @size-change="getList"
-                            @current-change="getList"
-                        />
+                        <el-pagination v-model:current-page="search.page " v-model:page-size="search.pageSize" background layout="prev, pager, next, jumper" :total="total" @size-change="getList" @current-change="getList" />
                     </el-config-provider>
                 </div>
             </div>
@@ -81,10 +60,30 @@ import { ztreeAll } from '@/assets/api/common';
 let route = useRoute();
 const router = useRouter();
 const tags = ref([
-    { id: '920efcac-ec14-4513-bca5-ffbc62e0ded1', text: '粮油加工', type: '2', icon: 'icon-shiyongyou' },
-    { id: '46e9c1ae-42e3-417f-bc3e-6f6a4ac9830b', text: '食品加工', type: '2', icon: 'icon-shipinjiagong' },
-    { id: '231c1816-0232-4ba3-b000-2a3a5a84fa16', text: '检验检测', type: '2', icon: 'icon-jiance' },
-    { id: '525031f4-b012-4c70-a483-723fc0308245', text: '健康营养', type: '2', icon: 'icon-yingyang' }
+    {
+        id: '920efcac-ec14-4513-bca5-ffbc62e0ded1',
+        text: '粮油加工',
+        type: '2',
+        icon: 'icon-shiyongyou'
+    },
+    {
+        id: '46e9c1ae-42e3-417f-bc3e-6f6a4ac9830b',
+        text: '食品加工',
+        type: '2',
+        icon: 'icon-shipinjiagong'
+    },
+    {
+        id: '231c1816-0232-4ba3-b000-2a3a5a84fa16',
+        text: '检验检测',
+        type: '2',
+        icon: 'icon-jiance'
+    },
+    {
+        id: '525031f4-b012-4c70-a483-723fc0308245',
+        text: '健康营养',
+        type: '2',
+        icon: 'icon-yingyang'
+    }
 ]);
 const total = ref(100);
 const tagsType = ref('1');
@@ -131,11 +130,7 @@ onMounted(async () => {
 $--el-pagination-button-bg-color: '#fff';
 
 // 引入 Element UI 的主样式文件
-.professional-page {
-    width: 100%;
-    min-height: 100%;
-    background: #fff;
-
+.page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/virtualSimulation-bg.png');
     }

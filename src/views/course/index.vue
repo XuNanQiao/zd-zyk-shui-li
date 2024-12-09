@@ -1,26 +1,20 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-11-25 16:34:36
- * @LastEditors: JIANG
+ * @LastEditTime: 2024-12-09 11:39:33
+ * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\course\index.vue
+ * @FilePath: \shui-li\src\views\course\index.vue
  * 
 -->
 <template>
-    <div class="professional-page">
+    <div class="page-box">
         <div class="professional-banner"></div>
         <div class="page-content">
             <div class="page-left">
-                <div class="page-left-bg"></div>
+                <img class="page-left-bg" src="@/assets/images/banner/course-left-bg.png" />
                 <div class="list">
-                    <div
-                        class="item"
-                        :class="{ active: search.tags    == item.text }"
-                        v-for="(item, index) in tags"
-                        :key="index"
-                        @click="handChange(item)"
-                    >
+                    <div class="item" :class="{ active: search.tags    == item.text }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
                         <div class="text">{{ item.text }}</div>
                         <div class="after-icon iconfont icon-youjiantou"></div>
                     </div>
@@ -28,36 +22,27 @@
             </div>
             <div class="page-right">
                 <div class="cour-list">
-                    <div
-                        class="course-item"
-                        @click="goDetail(item)"
-                        v-for="(item,index) in dataList"
-                        :key="index"
-                    >
-                        <div class="course-img-box ">
-                            <img class="course-img" :src="item.imageUrl" alt="" />
+                    <div class="course-item" @click="goDetail(item)" v-for="(item,index) in dataList" :key="index">
+                        <div class="course-img-box">
+                            <img class="course-img" :src="item.imageUrl" alt />
                         </div>
-                        <div class="course-name ellipsis ">{{ item.name }}</div>
-                        <div class="course-tips ellipsis ">{{ item.schoolName }}</div>
-                        <div class="course-bottom ">
-                            <div><span class="iconfont icon-jiaoshi"></span>{{item.userName}}</div>
+                        <div class="course-name ellipsis">{{ item.name }}</div>
+                        <div class="course-tips ellipsis">{{ item.schoolName }}</div>
+                        <div class="course-bottom">
                             <div>
-                                <span class="iconfont icon-ren3"></span>{{ item.peopleNumber}}
+                                <span class="iconfont icon-jiaoshi"></span>
+                                {{item.userName}}
                             </div>
+                           <!--  <div>
+                                <span class="iconfont icon-yanjing"></span>
+                                {{ item.peopleNumber}}
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="page-bottom">
                     <el-config-provider :locale="zhCn">
-                        <el-pagination
-                            v-model:current-page="search.pageNum "
-                            v-model:page-size="search.pageSize"
-                            background
-                            layout="prev, pager, next, jumper"
-                            :total="total"
-                            @size-change="getList"
-                            @current-change="getList"
-                        />
+                        <el-pagination v-model:current-page="search.pageNum " v-model:page-size="search.pageSize" background layout="prev, pager, next, jumper" :total="total" @size-change="getList" @current-change="getList" />
                     </el-config-provider>
                 </div>
             </div>
@@ -158,11 +143,7 @@ onMounted(async () => {
 $--el-pagination-button-bg-color: '#fff';
 
 // 引入 Element UI 的主样式文件
-.professional-page {
-    width: 100%;
-    min-height: 100%;
-    background: #fff;
-
+.page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/course-bg.png');
     }
@@ -182,7 +163,7 @@ $--el-pagination-button-bg-color: '#fff';
 .course-bottom {
     margin-top: 6px;
     padding-top: 6px;
-    border-top: 1px solid rgba(228, 244, 233, 1);
+    border-top: 1px solid var(--bg-color);
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0px;
@@ -194,7 +175,7 @@ $--el-pagination-button-bg-color: '#fff';
     justify-content: space-between;
     .iconfont {
         font-size: 20px;
-        color: rgba(10, 120, 96, 1);
+        color: var(--title-color);
         margin-right: 9px;
     }
 }
