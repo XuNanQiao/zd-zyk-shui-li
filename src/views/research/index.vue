@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 14:19:10
+ * @LastEditTime: 2024-12-09 14:24:12
  * @LastEditors: 南桥几许
  * @Description: 
  * @FilePath: \shui-li\src\views\research\index.vue
@@ -83,6 +83,8 @@ const getList = () => {
     professionalApi.newmaterialMaterial(search).then((res) => {
         total.value = res.materialCount;
         dataList.value = JSON.parse(res.list).obj;
+        console.log( dataList.value);
+        
     });
 };
 const goDetail = (item: any) => {

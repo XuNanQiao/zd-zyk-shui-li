@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 14:20:25
+ * @LastEditTime: 2024-12-09 14:32:18
  * @LastEditors: 南桥几许
  * @Description: 
  * @FilePath: \shui-li\src\views\course\index.vue
@@ -104,7 +104,9 @@ const handChange = (item: any) => {
     getList();
 };
 const getList = () => {
-    homeApi.getCourseList3(search).then((res) => {
+    let data={...search}
+    data.tags ='食品生物技术'
+    homeApi.getCourseList3(data).then((res) => {
         total.value = res.total;
         dataList.value = res.rows;
     });
@@ -140,32 +142,5 @@ $--el-pagination-button-bg-color: '#fff';
 .course-name {
     text-align: left !important;
 }
-.course-tips {
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    line-height: 23.17px;
-    color: rgba(56, 56, 56, 1);
-    text-align: left;
-    margin-top: 5px;
-}
-.course-bottom {
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px solid var(--bg-color);
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    line-height: 24px;
-    color: rgba(56, 56, 56, 1);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .iconfont {
-        font-size: 20px;
-        color: var(--title-color);
-        margin-right: 9px;
-    }
-}
+
 </style>
