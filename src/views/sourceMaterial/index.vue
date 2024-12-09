@@ -1,93 +1,46 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-11-19 15:06:03
+ * @LastEditTime: 2024-12-09 10:28:03
  * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\sourceMaterial\index.vue
+ * @FilePath: \shui-li\src\views\sourceMaterial\index.vue
  * 
 -->
 <template>
-    <div class="professional-page">
+    <div class="page-box">
         <div class="professional-banner"></div>
         <div class="tags-box">
             <div class="tags">
                 <div class="tags-title">媒体类型：</div>
                 <div class="tags-list">
-                    <div
-                        class="tags-item"
-                        :class="{'tag-active':!search.array_media}"
-                        @click="typeChange(1,'')"
-                    >
-                        全部
-                    </div>
-                    <div
-                        class="tags-item"
-                        :class="{'tag-active':search.array_media==item.id}"
-                        v-for="(item,index) in  typeList.sysMediaType"
-                        :key="index"
-                        @click="typeChange(1,item.id)"
-                    >
-                        {{ item.typeName}}
-                    </div>
+                    <div class="tags-item" :class="{ 'tag-active': !search.array_media }" @click="typeChange(1, '')">全部</div>
+                    <div class="tags-item" :class="{ 'tag-active': search.array_media == item.id }" v-for="(item, index) in typeList.sysMediaType" :key="index" @click="typeChange(1, item.id)">{{ item.typeName }}</div>
                 </div>
             </div>
             <div class="tags">
                 <div class="tags-title">应用分类：</div>
-                <div class="tags-list" :class="{openBox:open}">
-                    <div
-                        class="tags-item"
-                        :class="{'tag-active':!search.array_application}"
-                        @click="typeChange(2,'')"
-                    >
-                        全部
-                    </div>
-                    <div
-                        class="tags-item"
-                        :class="{'tag-active':search.array_application==item.id}"
-                        v-for="(item,index) in  typeList.sysApplyType"
-                        :key="index"
-                        @click="typeChange(2,item.id)"
-                    >
-                        {{ item.typeName}}
-                    </div>
+                <div class="tags-list" :class="{ openBox: open }">
+                    <div class="tags-item" :class="{ 'tag-active': !search.array_application }" @click="typeChange(2, '')">全部</div>
+                    <div class="tags-item" :class="{ 'tag-active': search.array_application == item.id }" v-for="(item, index) in typeList.sysApplyType" :key="index" @click="typeChange(2, item.id)">{{ item.typeName }}</div>
                     <div class="open" @click="openHand()">
-                        展开<span class="iconfont icon-jinrujiantou"></span>
+                        展开
+                        <span class="iconfont icon-jinrujiantou"></span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="search">
             <div class="segmented">
-                <div
-                    class="segmented-item"
-                    :class="{'segmented-active':search.orders==item.value}"
-                    v-for="(item,index) in options"
-                    :key="index"
-                    @click="orderHand(item.value, )"
-                >
-                    {{ item.label}}
-                    <i
-                        class="iconfont "
-                        :class="{ 'icon-paixushengxu': search.orders == item.value[0], 'icon-paixujiangxu': search.orders == item.value[1] }"
-                    ></i>
+                <div class="segmented-item" :class="{ 'segmented-active': search.orders == item.value }" v-for="(item, index) in options" :key="index" @click="orderHand(item.value,)">
+                    {{ item.label }}
+                    <i class="iconfont" :class="{ 'icon-paixushengxu': search.orders == item.value[0], 'icon-paixujiangxu': search.orders == item.value[1] }"></i>
                 </div>
                 <div class="switch">
-                    <el-switch
-                        active-value="1"
-                        inactive-value="0"
-                        @change="searchHand"
-                        v-model="search.download"
-                        style="--el-switch-on-color: #13ce66; --el-switch-off-color: rgba(213, 215, 219, 1)"
-                    />仅下载
+                    <el-switch active-value="1" inactive-value="0" @change="searchHand" v-model="search.download" style="--el-switch-on-color: #13ce66; --el-switch-off-color: rgba(213, 215, 219, 1)" />仅下载
                 </div>
             </div>
-            <el-input
-                v-model="search.docname "
-                placeholder="按素材名称查询"
-                clearable
-                @clear="searchHand"
-            >
+            <el-input v-model="search.docname" placeholder="按素材名称查询" clearable @clear="searchHand">
                 <template #append>
                     <div class="flex" @click="searchHand">
                         <div class="iconfont icon-Rrl_s_011"></div>
@@ -98,34 +51,27 @@
         </div>
 
         <div class="course-box">
-            <div
-                class="course-item"
-                @click="goDetail(item)"
-                v-for="(item,index) in dataList"
-                :key="index"
-            >
-                <div class="course-img-box ">
-                    <img class="course-img" :src="item.file" alt="" />
+            <div class="course-item" @click="goDetail(item)" v-for="(item, index) in dataList" :key="index">
+                <div class="course-img-box">
+                    <img class="course-img" :src="item.file" alt />
                 </div>
-                <div class="course-name">{{item.DocTitle}}</div>
-                <div class="course-bottom ">
-                    <div><span class="iconfont icon-zu"></span>{{item.newSize}}</div>
-                    <div><span class="iconfont icon-ren3"></span>{{ item.ViewCount}}</div>
+                <div class="course-name">{{ item.DocTitle }}</div>
+                <div class="course-bottom">
+                    <div>
+                        <span class="iconfont icon-zu"></span>
+                        {{ item.newSize }}
+                    </div>
+                    <div>
+                        <span class="iconfont icon-yanjing"></span>
+                        {{ item.ViewCount }}
+                    </div>
                 </div>
             </div>
         </div>
         <!-- <el-empty v-if="!dataList||dataList.length==0" :image-size="200" /> -->
         <div class="page-bottom">
             <el-config-provider :locale="zhCn">
-                <el-pagination
-                    v-model:current-page="search.page"
-                    v-model:page-size="search.pageSize"
-                    background
-                    layout="prev, pager, next, jumper"
-                    :total="total"
-                    @size-change="getList"
-                    @current-change="getList"
-                />
+                <el-pagination v-model:current-page="search.page" v-model:page-size="search.pageSize" background layout="prev, pager, next, jumper" :total="total" @size-change="getList" @current-change="getList" />
             </el-config-provider>
         </div>
     </div>
@@ -223,23 +169,24 @@ onMounted(() => {
 // 引入 Element UI 的重置样式和变量文件
 $--el-pagination-button-bg-color: '#fff';
 $maxWidth: 1320px;
+
 // 引入 Element UI 的主样式文件
-.professional-page {
-    width: 100%;
-    min-height: 100%;
+.page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/sourceMaterial-bg.png');
     }
+
     .tags-box {
         width: $maxWidth;
         margin: 13px auto;
+
         .tags {
             .tags-title {
                 font-size: 25px;
                 font-weight: 700;
                 letter-spacing: 0px;
                 line-height: 76px;
-                color: rgba(10, 120, 96, 1);
+                color: var(--title-color);
                 text-align: left;
             }
 
@@ -247,12 +194,13 @@ $maxWidth: 1320px;
                 width: 100%;
                 height: 140px;
                 padding: 25px 60px;
-                background: rgba(228, 244, 233, 1);
+                background: var(--bg-color);
                 grid-template-columns: repeat(6, calc(100% / 6));
                 display: grid;
                 grid-gap: 32px 0px;
                 position: relative;
                 overflow: hidden;
+
                 .tags-item {
                     border-radius: 168px;
                     width: max-content;
@@ -262,16 +210,18 @@ $maxWidth: 1320px;
                     font-weight: 400;
                     letter-spacing: 0px;
                     line-height: 29px;
-                    color: rgba(10, 120, 96, 1);
+                    color: var(--title-color);
                     text-align: center;
                     cursor: pointer;
                 }
+
                 .tag-active {
-                    background: rgba(10, 120, 96, 1);
+                    background: var(--title-color);
                     color: #fff;
                 }
             }
         }
+
         .open {
             position: absolute;
             bottom: 10px;
@@ -280,24 +230,27 @@ $maxWidth: 1320px;
             height: 37px;
             opacity: 1;
             border-radius: 168px;
-            background: rgba(10, 120, 96, 1);
+            background: var(--title-color);
             color: #fff;
             text-align: center;
             font-size: 14px;
             font-weight: 400;
             line-height: 35px;
             cursor: pointer;
+
             .iconfont {
                 display: inline-block;
                 font-size: 12px;
-                transition: transform 0.5s !important ;
+                transition: transform 0.5s !important;
                 transform: rotate(90deg) !important;
             }
         }
     }
+
     .openBox {
         transition: height 0.5s;
         height: auto !important;
+
         .open {
             .iconfont {
                 transform: rotate(270deg) !important;
@@ -312,6 +265,7 @@ $maxWidth: 1320px;
         width: $maxWidth;
         padding: 0 10px 0px 14px;
         margin: 30px auto;
+
         .segmented {
             $itemheight: 58px;
             width: 819.53px;
@@ -322,7 +276,7 @@ $maxWidth: 1320px;
             align-items: center;
             position: relative;
             border-bottom: 2px solid transparent;
-            border-image: linear-gradient(to right, rgba(10, 120, 96, 1), rgba(10, 120, 96, 0)) 10;
+            border-image: linear-gradient(to right, var(--title-color), rgba(10, 120, 96, 0)) 10;
 
             .segmented-item {
                 z-index: 99;
@@ -337,14 +291,17 @@ $maxWidth: 1320px;
                 color: rgba(93, 93, 93, 1);
                 text-align: center;
                 cursor: pointer;
+
                 .iconfont {
                     font-size: 25px;
                 }
             }
+
             .segmented-active {
-                background: rgba(10, 120, 96, 1);
+                background: var(--title-color);
                 color: #fff;
             }
+
             .switch {
                 font-size: 20px;
                 font-weight: 400;
@@ -353,29 +310,34 @@ $maxWidth: 1320px;
                 color: rgba(56, 56, 56, 1);
                 display: flex;
                 align-items: center;
+
                 .el-switch {
                     margin-left: 12px;
                     margin-right: 12px;
                 }
             }
         }
+
         :deep(.el-input) {
             width: 451px !important;
             height: 58px;
             background: rgba(255, 255, 255, 1);
-            border: 1px solid rgba(10, 120, 96, 1);
+            border: 1px solid var(--title-color);
             margin-left: 31px;
+
             .el-input__wrapper {
                 font-size: 25px;
                 font-weight: 400;
                 padding: 0px 27px;
                 box-shadow: none;
             }
+
             .el-input__suffix {
                 .el-input__clear {
                     font-size: 20px;
                 }
             }
+
             .el-input-group__append {
                 box-shadow: none;
                 padding: 0px !important;
@@ -383,11 +345,12 @@ $maxWidth: 1320px;
                 height: 58px;
                 width: 129px;
                 opacity: 1;
-                background: rgba(10, 120, 96, 1);
+                background: var(--title-color);
                 color: #fff;
                 font-size: 25px;
                 font-weight: 400;
                 cursor: pointer;
+
                 .iconfont {
                     font-size: 25px;
                     margin-right: 10px;
@@ -396,6 +359,7 @@ $maxWidth: 1320px;
         }
     }
 }
+
 .course-box {
     $conwidth: 309px;
     width: $maxWidth;
@@ -403,11 +367,13 @@ $maxWidth: 1320px;
     grid-template-columns: repeat(4, $conwidth);
     margin: 0px auto;
     gap: 28px;
+
     .course-item {
         width: $conwidth;
         background-color: #fff;
         border-radius: 0 0 5px 5px;
         cursor: pointer;
+
         .course-img-box {
             height: 174px;
             width: 100%;
@@ -439,7 +405,7 @@ $maxWidth: 1320px;
         .course-bottom {
             margin-top: 6px;
             padding-top: 6px;
-            border-top: 2px solid rgba(228, 244, 233, 1);
+            border-top: 2px solid var(--bg-color);
             font-size: 16px;
             font-weight: 400;
             letter-spacing: 0px;
@@ -449,14 +415,16 @@ $maxWidth: 1320px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             .iconfont {
                 font-size: 19.14px;
-                color: rgba(10, 120, 96, 1);
+                color: var(--title-color);
                 margin-right: 9px;
             }
         }
     }
 }
+
 .page-bottom {
     width: 100%;
     padding-bottom: 130px;

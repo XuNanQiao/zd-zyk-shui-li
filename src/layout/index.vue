@@ -1,10 +1,10 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2024-12-02 10:55:41
- * @LastEditors: JIANG
+ * @LastEditTime: 2024-12-09 14:05:18
+ * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\layout\index.vue
+ * @FilePath: \shui-li\src\layout\index.vue
  * 
 -->
 <template>
@@ -14,9 +14,7 @@
             <img class="hearer-logo" src="/src/assets/images/logo.png" />
             <div class="hearer-title">
                 <div class="title" @click="goPage(`/home`)">粮食工程技术与管理专业教学资源库</div>
-                <div class="tips">
-                    Teaching Resource Library for Grain Engineering Technology and Management
-                </div>
+                <div class="tips">Teaching Resource Library for Grain Engineering Technology and Management</div>
             </div>
         </div>
         <div class="header-right">
@@ -28,7 +26,9 @@
             </div>
             <div v-else class="hearer-user flex">
                 <!-- <img class="user-img" :src="sculpture" /> -->
-                <el-icon class="icon" @click="goLogin"><User /></el-icon>
+                <el-icon class="icon" @click="goLogin">
+                    <User />
+                </el-icon>
                 <div class="login name" @click="goLogin">登录</div>
                 <el-divider direction="vertical" />
                 <div class="name" @click="goRegister">注册</div>
@@ -36,131 +36,53 @@
         </div>
     </div>
     <div class="tab-list">
-        <el-menu
-            :default-active="defaultActive"
-            popper-class="layout-menu-popper"
-            class="el-menu-popper-demo"
-            mode="horizontal"
-            :popper-offset="0"
-            @select="select"
-        >
+        <el-menu :default-active="defaultActive" popper-class="layout-menu-popper" class="el-menu-popper-demo" mode="horizontal" :popper-offset="0" @select="select">
             <template v-for="(item,index) of menuList" :key="index">
-                <el-sub-menu
-                    :index="item.path"
-                    v-if="item.children&&item.children.length>0"
-                    :data-content="item.name"
-                >
+                <el-sub-menu :index="item.path" v-if="item.children&&item.children.length>0" :data-content="item.name">
                     <template #title>
-                        <div @click="turnToPage(item.path)">
-                            {{ item.name}}
-                        </div>
+                        <div @click="turnToPage(item.path)">{{ item.name}}</div>
                     </template>
-                    <el-menu-item
-                        v-for="(chil,chilIndex) of item.children"
-                        :key="chilIndex"
-                        :index="chil.path"
-                        >{{chil.name}}</el-menu-item
-                    >
+                    <el-menu-item v-for="(chil,chilIndex) of item.children" :key="chilIndex" :index="chil.path">{{chil.name}}</el-menu-item>
                 </el-sub-menu>
-                <el-menu-item
-                    v-else
-                    :index="item.path"
-                    :data-content="item.name"
-                    >{{ item.name}}</el-menu-item
-                >
+                <el-menu-item v-else :index="item.path" :data-content="item.name">{{ item.name}}</el-menu-item>
             </template>
         </el-menu>
     </div>
-    <router-view> </router-view>
+    <router-view></router-view>
     <div class="footer">
         <div class="footer-inner">
             <div class="top">
                 <div class="footer-left">
-                    <a :href="item.url" target="_blank" class="ve-link" v-for="item in linksList">
-                        {{item.name}}
-                    </a>
+                    <a :href="item.url" target="_blank" class="ve-link" v-for="item in linksList">{{item.name}}</a>
                 </div>
                 <div class="footer-right">
                     <h3 class="footer-logo">高等教育出版社</h3>
                     <div class="footer-text">
                         <p>
-                            <a
-                                href="https://www.icve.com.cn/portal_new/apply/apply.html"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                开通项目申请表
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/apply/apply.html" target="_blank" class="ve-link">开通项目申请表</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=1"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                平台简介
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=1" target="_blank" class="ve-link">平台简介</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=2"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                知识产权
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=2" target="_blank" class="ve-link">知识产权</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=3"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                免责声明
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=3" target="_blank" class="ve-link">免责声明</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=4"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                意见反馈
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=4" target="_blank" class="ve-link">意见反馈</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=5"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                联系我们
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=5" target="_blank" class="ve-link">联系我们</a>
                             &nbsp;|&nbsp;
-                            <a
-                                href="https://www.icve.com.cn/portal_new/platform/policy.html"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                隐私政策
-                            </a>
-                            <a
-                                href="https://help.icve.com.cn/jjxx"
-                                target="_blank"
-                                class="ve-link"
-                            >
-                                疫情防控在线教学方案
-                            </a>
+                            <a href="https://www.icve.com.cn/portal_new/platform/policy.html" target="_blank" class="ve-link">隐私政策</a>
+                            <a href="https://help.icve.com.cn/jjxx" target="_blank" class="ve-link">疫情防控在线教学方案</a>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="footer-copyright">
-                <a
-                    target="_blank"
-                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007836"
-                >
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007836">
                     <p>京公网安备 11010202007836号</p>
                 </a>
                 <span>Copyright©2014-2019 高等教育出版社</span>
-                <a href="http://beian.miit.gov.cn" class="copyright-ICP">
-                    京ICP备12020869号-19
-                </a>
+                <a href="http://beian.miit.gov.cn" class="copyright-ICP">京ICP备12020869号-19</a>
                 <div style="display: inline-block; vertical-align: middle">
                     <span>技术支持:</span>
                     <a href="javascript:;"></a>
@@ -205,33 +127,22 @@ const menuList = ref([
         children: [
             { path: '/professional?index=0', name: '专业介绍' },
             { path: '/professional?index=1', name: '专业标准' },
-            { path: '/professional?index=2', name: '人培方案' },
-            { path: '/professional?index=3', name: '课程标准' },
-            { path: '/professional?index=4', name: '教学案例' },
-            { path: '/professional?index=5', name: '数字教材' },
-        ]
-    },
-    {
-        path: '/industry',
-        name: '行业园地',
-        children: [
-            { path: '/industry?index=0', name: '行业信息' },
-            { path: '/industry?index=1', name: '行业标准' },
-            { path: '/industry?index=2', name: '就业信息' },
-            { path: '/industry?index=3', name: '企业文化' },
-            { path: '/industry?index=4', name: '行业新技术' }
+            { path: '/professional?index=2', name: '行业标准' },
+            { path: '/professional?index=3', name: '职业标准' },
+            { path: '/professional?index=4', name: '人培方案' },
+            { path: '/professional?index=5', name: '课程标准' },
+            { path: '/professional?index=6', name: '专业课程体系' },
+            { path: '/professional?index=7', name: '优秀教学案例' }
         ]
     },
     {
         path: '/course',
         name: '课程中心',
         children: [
-            { path: '/course?index=0', name: '食品生物技术' },
-            { path: '/course?index=1', name: '食品营养与健康' },
-            { path: '/course?index=2', name: '食品智能加工技术' },
-            { path: '/course?index=3', name: '食品检验检测技术' },
-            { path: '/course?index=4', name: '粮食储运与质量安全' },
-            { path: '/course?index=5', name: '粮食工程技术与管理' }
+            { path: '/course?index=0', name: '专业基础课' },
+            { path: '/course?index=1', name: '专业核心课' },
+            { path: '/course?index=2', name: '专业拓展课' },
+            { path: '/course?index=3', name: '实习实训课' }
         ]
     },
     { path: '/sourceMaterial', name: '素材中心' },
@@ -239,13 +150,51 @@ const menuList = ref([
         path: '/trainingCenter',
         name: '培训中心',
         children: [
-            { path: '/trainingCenter?index=0', name: '社会培训' },
-            { path: '/trainingCenter?index=1', name: '企业培训' },
-            { path: '/trainingCenter?index=2', name: '职业认证培训' },
-            { path: '/trainingCenter?index=3', name: '“兴农人”培训' }
+            { path: '/trainingCenter?index=0', name: '行业岗位培训' },
+            { path: '/trainingCenter?index=1', name: '创新创业培训' },
+            { path: '/trainingCenter?index=2', name: '赛证融通培训' },
+            { path: '/trainingCenter?index=3', name: '虚拟仿真培训' }
         ]
     },
     {
+        path: '/industry',
+        name: '特色资源中心',
+        children: [
+            { path: '/industry?index=0', name: '产教融合' },
+            { path: '/industry?index=1', name: '城市体检' },
+            { path: '/industry?index=2', name: '学生案例' },
+            { path: '/industry?index=3', name: '数字教材' },
+            { path: '/industry?index=4', name: '知识图谱' }
+        ]
+    },
+    {
+        path: '/internationalExchange',
+        name: '国际交流与合作',
+        children: [
+            { path: '/internationalExchange?index=0', name: '职教出海案例' },
+            { path: '/internationalExchange?index=1', name: '国际交流资源' }
+        ]
+    },
+
+    {
+        path: '/popularization',
+        name: '评测考核试题库',
+        children: [
+            { path: '/popularization?index=0', name: '课程试题库' },
+            { path: '/popularization?index=1', name: '职业技能试题库' },
+            { path: '/popularization?index=2', name: '技能竞赛试题库' },
+            { path: '/popularization?index=3', name: '1+X证书测试题库' }
+        ]
+    },
+    {
+        path: '/research',
+        name: '课程思政案例库',
+        children: [
+            { path: '/research?index=0', name: '思政课程' },
+            { path: '/research?index=1', name: '思政案例' }
+        ]
+    }
+    /*   {
         path: '/virtualSimulation',
         name: '虚仿中心',
         children: [
@@ -254,26 +203,7 @@ const menuList = ref([
             { path: '/virtualSimulation?index=2', name: '检验检测' },
             { path: '/virtualSimulation?index=3', name: '健康营养' }
         ]
-    },
-    {
-        path: '/popularization',
-        name: '粮心育人',
-        children: [
-            { path: '/popularization?index=0', name: '课程思政案例库' },
-            { path: '/popularization?index=1', name: '双创教育案例库' }
-        ]
-    },
-    {
-        path: '/research',
-        name: '粮韵文化馆',
-        children: [
-            { path: '/research?index=0', name: '“放心粮油”工程' },
-            { path: '/research?index=1', name: '“五粮手作”展示' },
-            { path: '/research?index=2', name: '“金色麦田”实践' },
-            { path: '/research?index=3', name: '“沿黄美食”体验' }
-        ]
-    },
-    { path: '/internationalExchange', name: '国际交流与合作' }
+    } */
 ]);
 const logout = async () => {
     logoutApi(token.value).then((res: any) => {
@@ -334,12 +264,11 @@ const toNext = () => {
 };
 const logo = ref();
 
-const linksList = ref()
+const linksList = ref();
 onMounted(() => {
-
-    getLink().then((res: any)=>{
-        linksList.value = res.list
-    })
+    getLink().then((res: any) => {
+        linksList.value = res.list;
+    });
 
     homeApi.projectInfo().then((res) => {
         logo.value = res.data.projectGroupInfo.projectLogo;
@@ -418,7 +347,7 @@ onMounted(() => {
                 border-radius: 28px;
                 height: 32px;
             }
-            .icon{
+            .icon {
                 font-size: 20px;
             }
             .name {
@@ -561,7 +490,7 @@ onMounted(() => {
         font-size: 0;
         width: 230px;
         height: 50px;
-        background: url("https://qun.icve.com.cn/portalproject/9tk7anmyrbcwaexr1n9tg/sta_page/img/layout_long_logo.5606b99c.5606b99c.png")
+        background: url('https://qun.icve.com.cn/portalproject/9tk7anmyrbcwaexr1n9tg/sta_page/img/layout_long_logo.5606b99c.5606b99c.png')
             no-repeat;
     }
     .footer-left {
@@ -618,14 +547,14 @@ onMounted(() => {
     opacity: 1;
     .el-menu-item {
         justify-content: center;
-        color: #0A7860 !important;
+        color: #0a7860 !important;
     }
-    .is-active{
-        background-color: #0A7860 !important;
+    .is-active {
+        background-color: #0a7860 !important;
         color: #fff !important;
     }
-    .el-menu-item:hover{
-        background-color: #0A7860 !important;
+    .el-menu-item:hover {
+        background-color: #0a7860 !important;
         color: #fff !important;
     }
 }

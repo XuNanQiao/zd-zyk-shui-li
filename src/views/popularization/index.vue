@@ -1,18 +1,18 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-11-19 10:51:27
+ * @LastEditTime: 2024-12-09 13:58:24
  * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\popularization\index.vue
+ * @FilePath: \shui-li\src\views\popularization\index.vue
  * 
 -->
 <template>
-    <div class="professional-page">
+    <div class="page-box">
         <div class="professional-banner"></div>
         <div class="page-content">
             <div class="page-left">
-                <div class="page-left-bg"></div>
+                <img class="page-left-bg" src="@/assets/images/banner/popularization-left-bg.png" />
                 <div class="list">
                     <div
                         class="item"
@@ -21,7 +21,7 @@
                         :key="index"
                         @click="handChange(item)"
                     >
-                        <div class="befor-icon iconfont " :class="item.icon"></div>
+                        <div class="befor-icon iconfont" :class="item.icon"></div>
                         <div class="text">{{ item.text }}</div>
                         <div class="after-icon iconfont icon-youjiantou"></div>
                     </div>
@@ -35,8 +35,9 @@
                         v-for="(item, index) in dataList"
                         :key="index"
                     >
-                        <div class="item-text ellipsis">{{ item.DocTitle  }}</div>
-                        <div class="item-tips">{{ item.CreateTime  }}</div>
+                        <div class="item-text-icon"></div>
+                        <div class="item-text ellipsis">{{ item.DocTitle }}</div>
+                        <div class="item-tips">{{ item.CreateTime }}</div>
                     </div>
                 </div>
                 <div class="cour-list" v-else-if="tagsType=='2'">
@@ -46,10 +47,10 @@
                         v-for="(item,index) in dataList"
                         :key="index"
                     >
-                        <div class="course-img-box ">
-                            <img class="course-img" :src="item.file" alt="" />
+                        <div class="course-img-box">
+                            <img class="course-img" :src="item.file" alt />
                         </div>
-                        <div class="course-name ellipsis ">{{ item.DocTitle }}</div>
+                        <div class="course-name ellipsis">{{ item.DocTitle }}</div>
                     </div>
                 </div>
                 <div class="page-bottom">
@@ -81,8 +82,30 @@ import { ztreeAll } from '@/assets/api/common';
 let route = useRoute();
 const router = useRouter();
 const tags = ref([
-    { id: '3028829c-9058-43dc-8d33-e73f6518c803', text: '课程思政案例库', type: '2', icon: 'icon-sizheng' },
-    { id: '16657b4c-fdec-433b-8e08-6441b7852449', text: '双创教育案例库', type: '2', icon: 'icon-interinformation' }
+    {
+        id: '3028829c-9058-43dc-8d33-e73f6518c803',
+        text: '课程试题库',
+        type: '2',
+        icon: 'icon-kecheng'
+    },
+    {
+        id: '3028829c-9058-43dc-8d33-e73f6518c803',
+        text: '职业技能试题库',
+        type: '2',
+        icon: 'icon-zhiyejineng'
+    },
+    {
+        id: '3028829c-9058-43dc-8d33-e73f6518c803',
+        text: '技能竞赛试题库',
+        type: '2',
+        icon: 'icon-gerenzhiyeguihua'
+    },
+    {
+        id: '16657b4c-fdec-433b-8e08-6441b7852449',
+        text: 'X证书测试题库',
+        type: '2',
+        icon: 'icon-menu_jsdt'
+    }
 ]);
 const total = ref(100);
 const tagsType = ref('1');
@@ -129,11 +152,7 @@ onMounted(async () => {
 $--el-pagination-button-bg-color: '#fff';
 
 // 引入 Element UI 的主样式文件
-.professional-page {
-    width: 100%;
-    min-height: 100%;
-    background: #fff;
-
+.page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/popularization-bg.png');
     }
