@@ -1,10 +1,10 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-14 10:11:10
- * @LastEditTime: 2024-11-25 15:49:39
- * @LastEditors: JIANG
+ * @LastEditTime: 2024-12-09 14:44:51
+ * @LastEditors: 南桥几许
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\HomeView.vue
+ * @FilePath: \shui-li\src\views\HomeView.vue
  * 
 -->
 <template>
@@ -305,8 +305,10 @@
             <knowledge />
         </div>
     </div>
+        <img class="tupu" src="@/assets/images/tupu.png"/>
     <div class="team-box">
-        <div class="team-wrap">
+        <img src="@/assets/images/danwei.png"/>
+  <!--       <div class="team-wrap">
             <div class="little-title">
                 <div class="line-box">
                     <div class="line"></div>
@@ -330,12 +332,12 @@
                 <div class="team-tag">参建单位</div>
                 <div class="unit-box">
                     <div class="school-item" v-for="item in projectInfo?.projectGroupInfo?.joinUnit">
-                        <!-- <div v-html="item"></div> -->
+                        <div v-html="item"></div>
                         {{ item }}
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script setup lang="ts">
@@ -985,11 +987,19 @@ onMounted(() => {
 
 
 
-
+.tupu{
+    width: 100%;
+height: 629px;
+ 
+}
 
 // 建设团队
 .team-box {
-    background-color: #E6F0E6;
+    img{
+        width: 100%;
+height: 1106px;
+    }
+    /* background-color: #E6F0E6;
     padding-top: 40px;
     padding-bottom: 40px;
     .team-wrap{
@@ -1040,7 +1050,7 @@ onMounted(() => {
                 }
             }
         }
-    }
+    } */
 }
 
 .more-btn {
