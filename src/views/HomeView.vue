@@ -1,10 +1,10 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-14 10:11:10
- * @LastEditTime: 2024-11-25 15:49:39
+ * @LastEditTime: 2024-12-09 14:19:38
  * @LastEditors: JIANG
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\HomeView.vue
+ * @FilePath: \shui-li\src\views\HomeView.vue
  * 
 -->
 <template>
@@ -15,46 +15,128 @@
             </el-carousel-item>
         </el-carousel>
     </div>
-    <div class="user-box">
-        <div class="user-item">
-            <img class="user-img" loading="lazy" src="@/assets/images/home/teacher.png" />
-            <div class="user-tupe">教师用户</div>
-        </div>
-        <div class="user-item">
-            <img class="user-img" loading="lazy" src="@/assets/images/home/pupil.png" />
-            <div class="user-tupe">学生用户</div>
-        </div>
-        <div class="user-item">
-            <img class="user-img" loading="lazy" src="@/assets/images/home/firm.png" />
-            <div class="user-tupe">企业用户</div>
-        </div>
-        <div class="user-item">
-            <img class="user-img" loading="lazy" src="@/assets/images/home/society.png" />
-            <div class="user-tupe">社会学习者</div>
-        </div>
+    <div class="search-box">
+        <el-input class="search-input" placeholder="请输入关键词搜索课、微课、素材"></el-input>
+        <el-icon class="icon"><Search /></el-icon>
     </div>
     <div class="wrap1">
+        <div class="test-user"></div>
+        <!-- <div class="user-box">
+            <div class="user-item">
+                <img class="user-img" loading="lazy" src="@/assets/images/home/teacher.png" />
+                <div class="user-tupe">教师用户</div>
+            </div>
+            <div class="user-item">
+                <img class="user-img" loading="lazy" src="@/assets/images/home/pupil.png" />
+                <div class="user-tupe">学生用户</div>
+            </div>
+            <div class="user-item">
+                <img class="user-img" loading="lazy" src="@/assets/images/home/firm.png" />
+                <div class="user-tupe">企业用户</div>
+            </div>
+            <div class="user-item">
+                <img class="user-img" loading="lazy" src="@/assets/images/home/society.png" />
+                <div class="user-tupe">社会学习者</div>
+            </div>
+        </div> -->
         <div class="little-title">
-            <div class="line-box">
-                <div class="line"></div>
-                <div class="round"></div>
+            <div class="line-l">
             </div>
             <div class="title-box">
-                <img class="title" loading="lazy" src="@/assets/images/home/title1.png"></img>
+                资源库简介
             </div>
-            <div class="line-box">
-                <div class="round"></div>
-                <div class="line right"></div>
+            <div class="line-r">
             </div>
         </div>
-        <div class="home-data">
+        <div class="intro">
             <img class="data-img" loading="lazy" src="@/assets/images/home/home-data.png" />
             <div class="text-box">
                 <div class="data-text" v-html="data.text"></div>
-                <div class="view" @click="goPage('/projectInfo')">查看详情>></div>
+                <!-- <div class="view" @click="goPage('/projectInfo')">查看详情>></div> -->
             </div>
         </div>
-        <div class="home-data-list">
+        <div class="data-statistics-box">
+            <div class="data-wrap">
+                <div class="data-statistics">
+                    <div class="statistics-item">
+                        <div class="icon-box">
+                            <i class="iconfont icon-wodekecheng"></i>
+                        </div>
+                        
+                        <div>
+                            <span>课程统计</span>
+                            <span>{{ statistics.courseNumber }}</span>
+                        </div>
+                    </div>
+                    <div class="statistics-item">
+                        <div class="icon-box">
+                            <i class="iconfont icon-wodekecheng"></i>
+                        </div>
+                        <div>
+                            <span>微课统计</span>
+                            <span>{{ statistics.smallCourse }}</span>
+                        </div>
+                    </div>
+                    <div class="statistics-item">
+                        <div class="icon-box">
+                            <i class="iconfont icon-wodekecheng"></i>
+                        </div>
+                        <div>
+                            <span>素材统计</span>
+                            <span>{{ statistics.resourceNumber }}</span>
+                        </div>
+                    </div>
+                    <div class="statistics-item">
+                        <div class="icon-box">
+                            <i class="iconfont icon-wodekecheng"></i>
+                        </div>
+                        <div>
+                            <span>用户统计</span>
+                            <span>{{ statistics.userNumber }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="talent-training-program">
+                <div class="left">
+                        “能学、辅教、促改”，服务专业人才培养和行业产业发展：对照核心专业和服务专业职业岗位定位，搭建系统化的知识图谱，升级原有土木工程检测资源库资源，推动辐射专业群高质量发展，以高素质技能型人才培养服务工程检测、房屋鉴定和2022年国家提出的“一年一体检、五年一评估”的城市体检评估工作，推进城市高质量发展。
+                </div>
+                <div class="right">
+                    <img src="@/assets/images/home/tag1.png" alt="">
+                    <div class="btn">查看更多</div>
+                </div>
+            </div>
+        </div>
+        <div class="little-title">
+            <div class="line-l">
+            </div>
+            <div class="title-box">
+                课程中心
+            </div>
+            <div class="line-r">
+            </div>
+        </div>
+        <div class="course-list">
+            <div class="course-item" v-for="item in 8">
+                <img src="" alt="">
+                <div class="text-box">
+                    <div>课程名称</div>
+                    <div>学院名称</div>
+                    <div>
+                        <div>
+                            <i class="iconfont icon-jiaoshi"></i>
+                            <span>教师名称</span>
+                        </div>
+                        <div>
+                            <i class="iconfont icon-yanjing"></i>
+                            <span>{{999}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="more-btn">查看更多</div>
+        <!-- <div class="home-data-list">
             <div class="list-item">
                 <img class="item-img" loading="lazy" src="@/assets/images/home/statistics1.png" />
                 <div class="item-text">
@@ -134,9 +216,11 @@
                     <span>专业建设标准</span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-
+    <div class="aaa"></div>
+    <div class="bbb"></div>
+    <div class="ccc"></div>
     <div class="wrap2">
         <div class="little-title">
             <div class="line-box">
@@ -352,11 +436,12 @@ const homeApi = new HomeApi();
 let data = reactive({
     text: ""
 });
-let statistics = reactive({
+let statistics = ref({
     userNumber: 0,
     courseNumber: 0,
     courseInfoNumber: 0,
-    resourceNumber: 0
+    resourceNumber: 0,
+    smallCourse: 0
 });
 
 const constructState = reactive({
@@ -396,7 +481,7 @@ onMounted(() => {
     homeApi.statisticsAllInfo().then((res) => {
         console.log(res, '====sss');
 
-        statistics = res.data;
+        statistics.value = res.data;
     });
     gatProjectInfo();
 
@@ -407,6 +492,7 @@ onMounted(() => {
     .banner-box {
         width: 100%;
         height: 533px;
+        margin-top: -70px;
 
         .banner-item {
             height: 533px;
@@ -435,13 +521,40 @@ onMounted(() => {
     }
 }
 
+.search-box{
+    width: 752px;
+    height: 72px;
+    border-radius: 217px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px  rgba($color: #000000, $alpha: 0.25);
+    margin: -36px auto 0;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    .search-input{
+        width: 680px;
+        height: 60px;
+        :deep(.el-input__wrapper) {
+            box-shadow: none;
+            padding: 0;
+        }
+    }
+    .icon{
+        font-size: 30px;
+        color: #2E90FA;
+        cursor: pointer;
+    }
+}
+
 .user-box {
     width: 964px;
     height: 124px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
-    margin: -70px auto 27px;
+    margin: 20px auto;
     display: flex;
     justify-content: space-evenly;
     position: relative;
@@ -465,34 +578,43 @@ onMounted(() => {
 }
 
 .wrap1 {
-    background-image: url('@/assets/images/home/bg1.png');
+    height: 2006px;
+    background-image: url('@/assets/images/home/wrap1-bg.png');
     background-size: 100% 100%;
     padding-bottom: 26px;
 
-    .home-data {
+    .test-user{
+        width: 1320px;
+        height: 112px;
+        background-image: url('@/assets/images/test/四个用户.png');
+        background-size: 100% 100%;
+        margin: 37px auto 20px;
+    }
+
+    .intro {
         margin: 50px auto;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         width: 1320px;
 
         .data-img {
-            width: 649px;
-            height: 365px;
-            margin-right: 43px;
+            width: 514px;
+            height: 306px;
+            margin-right: 38px;
         }
 
         .text-box {
             position: relative;
-            height: 274px;
-            width: 597px;
-            padding-top: 20px;
+            height: 362px;
+            width: 673px;
+            // padding-top: 20px;
 
             .data-text {
                 font-size: 20px;
                 font-weight: 400;
                 letter-spacing: 0px;
-                line-height: 45px;
+                line-height: 40px;
                 color: rgba(0, 0, 0, 1);
                 text-align: left;
                 vertical-align: top;
@@ -502,8 +624,13 @@ onMounted(() => {
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                -webkit-line-clamp: 6;
+                -webkit-line-clamp: 9;
                 /* 控制显示的行数 */
+
+                :deep(strong) {
+                    padding-left: 2em;
+                    font-weight: bold;
+                }
 
             }
 
@@ -520,6 +647,124 @@ onMounted(() => {
             }
         }
     }
+    .data-statistics-box{
+        width: 1320px;
+        height: 558px;
+        background-image: url('@/assets/images/home/data-bg.png');
+        background-repeat: no-repeat;
+        background-position: right 0;
+        background-size: 561px 321px;
+        margin: auto;
+        .data-wrap{
+            height: 320px;
+            .data-statistics{
+                width: 593px;
+                height: 125px;
+                font-family: YouSheBiaoTiYuan;
+                font-style: italic;
+                font-size: 25px;
+                display: grid;
+                grid-template-columns: 50% 50%;
+                grid-gap: 35px 0px;
+                margin-left: 130px;
+                .statistics-item{
+                    display: flex;
+                    align-items: center;
+                    .icon-box {
+                        font-size: 30px;
+                        width: 49px;
+                        height: 49px;
+                        border-radius: 50%;
+                        background-color: #1570EF;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        i {
+                            color:#fff;
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+        }
+        .talent-training-program{
+            height: 236px;
+            padding: 37px 0px 37px 58px;
+            background-color: #1570EF;
+            display: flex;
+            align-items: center;
+            .left{
+                width: 838px;
+                height: 162px;
+                font-size: 20px;
+                color: #fff;
+                line-height: 40px;
+                text-indent: 2em;
+            }
+            .right {
+                img{
+                    margin-bottom: 25px;
+                }
+                .btn {
+                    width: 110px;
+                    height: 34px;
+                    border-radius: 16px;
+                    background: #EAF3FE;
+                    box-shadow: 0px 0px 4px  #000000;
+                    text-align: center;
+                    line-height: 34px;
+                    color: #2E90FA;
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    .course-list{
+        width: 1320px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 26px auto 42px;
+        gap: 20px 14px;
+        .course-item{
+            width: 319px;
+            height: 274px;
+            background-color: #fff;
+            box-shadow: 0px 0px 8px  rgba(0, 0, 0, 0.25);
+
+            img{
+                width: 319px;
+                height: 180px;
+            }
+            .text-box{
+                height: 95px;
+                padding: 9px;
+
+                >:nth-child(3) {
+                    display: flex;
+                    justify-content: space-between;
+                    >div{
+                        i{
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+
+
+
+
+
+
+
+
+
+
 
     .home-data-list {
         display: flex;
@@ -946,40 +1191,29 @@ onMounted(() => {
 }
 
 .little-title {
-    font-family: AlimamaShuHeiTi-Bold;
+    font-family: YouSheBiaoTiYuan;
     display: flex;
     justify-content: center;
+    align-items: center;
 
-    .line-box {
-        display: flex;
-        align-items: center;
-
-        .line {
-            width: 109px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #0A7860 100%);
-        }
-
-        .right {
-            background: linear-gradient(90deg, #0A7860 0%, transparent 100%);
-        }
-
-        .round {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #0A7860;
-        }
-
+    .line-l {
+        width: 82px;
+        height: 5px;
+        background: linear-gradient(90deg, #FFFFFF 0%, #1570EF 100%);
+        border-radius: 65px;
     }
 
     .title-box {
-        height: 48px;
-        margin: 0 20px;
-
-        .title {
-            height: 48px;
-        }
+        font-style: italic;
+        font-size: 40px;
+        color: #1D75F0;
+        margin: 0 10px;
+    }
+    .line-r {
+        width: 82px;
+        height: 5px;
+        background: linear-gradient(90deg,  #1570EF 0%, #FFFFFF 100%);
+        border-radius: 65px;
     }
 }
 
@@ -1045,22 +1279,39 @@ onMounted(() => {
 
 .more-btn {
     cursor: pointer;
-    width: 167px;
-    height: 53px;
+    width: 110px;
+    height: 34px;
     opacity: 1;
-    background: #0A7860;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    line-height: 53px;
-    color: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    background: rgba(46, 144, 250, 0.1);
+    box-shadow: 0px 0px 4px  rgba(0, 0, 0, 0.25);
     text-align: center;
-    margin: 0px auto;
+    line-height: 34px;
+    margin: auto;
+    font-size: 20px;
+    color: #2E90FA;
+    font-weight: 700;
 }
 
 .knowledge {
     width: 100%;
     height: 975px;
     opacity: 1;
+}
+
+.aaa{
+    background-image: url('@/assets/images/test/课程思政案例库.png');
+    background-size: 100% 100%;
+    height: 278px;
+}
+.bbb{
+    background-image: url('@/assets/images/test/画板 24.png');
+    background-size: 100% 100%;
+    height: 565px;
+}
+.ccc{
+    background-image: url('@/assets/images/test/虚拟教研室.png');
+    background-size: 100% 100%;
+    height: 565px;
 }
 </style>

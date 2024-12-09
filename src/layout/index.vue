@@ -1,21 +1,21 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2024-12-02 10:55:41
+ * @LastEditTime: 2024-12-09 10:59:46
  * @LastEditors: JIANG
  * @Description: 
- * @FilePath: \dezhou-cereal\src\layout\index.vue
+ * @FilePath: \shui-li\src\layout\index.vue
  * 
 -->
 <template>
     <div class="header">
         <div class="header-left">
-            <!-- <img class="hearer-logo" :src="logo ? logo : '/src/assets/images/logo.png'" /> -->
-            <img class="hearer-logo" src="/src/assets/images/logo.png" />
+            <img class="hearer-logo" :src="logo ? logo : '/src/assets/images/logo.png'" />
+            <!-- <img class="hearer-logo" src="/src/assets/images/logo.png" /> -->
             <div class="hearer-title">
-                <div class="title" @click="goPage(`/home`)">粮食工程技术与管理专业教学资源库</div>
+                <div class="title" @click="goPage(`/home`)">土木工程检测技术教学资源库</div>
                 <div class="tips">
-                    Teaching Resource Library for Grain Engineering Technology and Management
+                    Teaching Resource Library for Civil Engineering Testing Technology
                 </div>
             </div>
         </div>
@@ -28,7 +28,9 @@
             </div>
             <div v-else class="hearer-user flex">
                 <!-- <img class="user-img" :src="sculpture" /> -->
-                <el-icon class="icon" @click="goLogin"><User /></el-icon>
+                <el-icon class="icon" @click="goLogin">
+                    <User />
+                </el-icon>
                 <div class="login name" @click="goLogin">登录</div>
                 <el-divider direction="vertical" />
                 <div class="name" @click="goRegister">注册</div>
@@ -44,29 +46,29 @@
             :popper-offset="0"
             @select="select"
         >
-            <template v-for="(item,index) of menuList" :key="index">
+            <template v-for="(item, index) of menuList" :key="index">
                 <el-sub-menu
                     :index="item.path"
-                    v-if="item.children&&item.children.length>0"
+                    v-if="item.children && item.children.length > 0"
                     :data-content="item.name"
                 >
                     <template #title>
                         <div @click="turnToPage(item.path)">
-                            {{ item.name}}
+                            {{ item.name }}
                         </div>
                     </template>
                     <el-menu-item
-                        v-for="(chil,chilIndex) of item.children"
+                        v-for="(chil, chilIndex) of item.children"
                         :key="chilIndex"
                         :index="chil.path"
-                        >{{chil.name}}</el-menu-item
+                        >{{ chil.name }}</el-menu-item
                     >
                 </el-sub-menu>
                 <el-menu-item
                     v-else
                     :index="item.path"
                     :data-content="item.name"
-                    >{{ item.name}}</el-menu-item
+                    >{{ item.name }}</el-menu-item
                 >
             </template>
         </el-menu>
@@ -77,7 +79,7 @@
             <div class="top">
                 <div class="footer-left">
                     <a :href="item.url" target="_blank" class="ve-link" v-for="item in linksList">
-                        {{item.name}}
+                        {{ item.name }}
                     </a>
                 </div>
                 <div class="footer-right">
@@ -139,11 +141,7 @@
                             >
                                 隐私政策
                             </a>
-                            <a
-                                href="https://help.icve.com.cn/jjxx"
-                                target="_blank"
-                                class="ve-link"
-                            >
+                            <a href="https://help.icve.com.cn/jjxx" target="_blank" class="ve-link">
                                 疫情防控在线教学方案
                             </a>
                         </p>
@@ -158,9 +156,7 @@
                     <p>京公网安备 11010202007836号</p>
                 </a>
                 <span>Copyright©2014-2019 高等教育出版社</span>
-                <a href="http://beian.miit.gov.cn" class="copyright-ICP">
-                    京ICP备12020869号-19
-                </a>
+                <a href="http://beian.miit.gov.cn" class="copyright-ICP"> 京ICP备12020869号-19 </a>
                 <div style="display: inline-block; vertical-align: middle">
                     <span>技术支持:</span>
                     <a href="javascript:;"></a>
@@ -205,33 +201,33 @@ const menuList = ref([
         children: [
             { path: '/professional?index=0', name: '专业介绍' },
             { path: '/professional?index=1', name: '专业标准' },
+            { path: '/professional?index=1', name: '行业标准' },
+            { path: '/professional?index=1', name: '职业标准' },
             { path: '/professional?index=2', name: '人培方案' },
             { path: '/professional?index=3', name: '课程标准' },
-            { path: '/professional?index=4', name: '教学案例' },
-            { path: '/professional?index=5', name: '数字教材' },
+            { path: '/professional?index=4', name: '专业课程体系' },
+            { path: '/professional?index=5', name: '优秀教学案例' },
         ]
     },
-    {
-        path: '/industry',
-        name: '行业园地',
-        children: [
-            { path: '/industry?index=0', name: '行业信息' },
-            { path: '/industry?index=1', name: '行业标准' },
-            { path: '/industry?index=2', name: '就业信息' },
-            { path: '/industry?index=3', name: '企业文化' },
-            { path: '/industry?index=4', name: '行业新技术' }
-        ]
-    },
+    // {
+    //     path: '/industry',
+    //     name: '行业园地',
+    //     children: [
+    //         { path: '/industry?index=0', name: '行业信息' },
+    //         { path: '/industry?index=1', name: '行业标准' },
+    //         { path: '/industry?index=2', name: '就业信息' },
+    //         { path: '/industry?index=3', name: '企业文化' },
+    //         { path: '/industry?index=4', name: '行业新技术' }
+    //     ]
+    // },
     {
         path: '/course',
         name: '课程中心',
         children: [
-            { path: '/course?index=0', name: '食品生物技术' },
-            { path: '/course?index=1', name: '食品营养与健康' },
-            { path: '/course?index=2', name: '食品智能加工技术' },
-            { path: '/course?index=3', name: '食品检验检测技术' },
-            { path: '/course?index=4', name: '粮食储运与质量安全' },
-            { path: '/course?index=5', name: '粮食工程技术与管理' }
+            { path: '/course?index=0', name: '专业基础课' },
+            { path: '/course?index=1', name: '专业核心课' },
+            { path: '/course?index=2', name: '专业拓展课' },
+            { path: '/course?index=3', name: '实习实训课' },
         ]
     },
     { path: '/sourceMaterial', name: '素材中心' },
@@ -239,41 +235,50 @@ const menuList = ref([
         path: '/trainingCenter',
         name: '培训中心',
         children: [
-            { path: '/trainingCenter?index=0', name: '社会培训' },
-            { path: '/trainingCenter?index=1', name: '企业培训' },
-            { path: '/trainingCenter?index=2', name: '职业认证培训' },
-            { path: '/trainingCenter?index=3', name: '“兴农人”培训' }
+            { path: '/trainingCenter?index=0', name: '行业岗位培训' },
+            { path: '/trainingCenter?index=1', name: '创新创业培训' },
+            { path: '/trainingCenter?index=2', name: '赛证融通培训' },
+            { path: '/trainingCenter?index=3', name: '虚拟仿真培训' }
         ]
     },
     {
         path: '/virtualSimulation',
-        name: '虚仿中心',
+        name: '特色资源中心',
         children: [
-            { path: '/virtualSimulation?index=0', name: '粮油加工' },
-            { path: '/virtualSimulation?index=1', name: '食品加工' },
-            { path: '/virtualSimulation?index=2', name: '检验检测' },
-            { path: '/virtualSimulation?index=3', name: '健康营养' }
+            { path: '/virtualSimulation?index=0', name: '产教融合' },
+            { path: '/virtualSimulation?index=1', name: '城市体验' },
+            { path: '/virtualSimulation?index=2', name: '学生案例' },
+            { path: '/virtualSimulation?index=3', name: '数字教材' },
+            { path: '/virtualSimulation?index=3', name: '知识图谱' },
+        ]
+    },
+    {
+        path: '/internationalExchange',
+        name: '国际交流与合作',
+        children: [
+            { path: '/internationalExchange?index=0', name: '职教出海案例' },
+            { path: '/internationalExchange?index=1', name: '国际交流资源' },
         ]
     },
     {
         path: '/popularization',
-        name: '粮心育人',
+        name: '评测考核试题库',
         children: [
-            { path: '/popularization?index=0', name: '课程思政案例库' },
-            { path: '/popularization?index=1', name: '双创教育案例库' }
+            { path: '/popularization?index=0', name: '课程试题库' },
+            { path: '/popularization?index=1', name: '职业技能试题库' },
+            { path: '/popularization?index=1', name: '技能竞赛试题库' },
+            { path: '/popularization?index=1', name: '1+X证书测试题库' },
         ]
     },
     {
         path: '/research',
-        name: '粮韵文化馆',
+        name: '课程思政案例库',
         children: [
-            { path: '/research?index=0', name: '“放心粮油”工程' },
-            { path: '/research?index=1', name: '“五粮手作”展示' },
-            { path: '/research?index=2', name: '“金色麦田”实践' },
-            { path: '/research?index=3', name: '“沿黄美食”体验' }
+            { path: '/research?index=0', name: '思政课程' },
+            { path: '/research?index=1', name: '思政案例' },
         ]
     },
-    { path: '/internationalExchange', name: '国际交流与合作' }
+
 ]);
 const logout = async () => {
     logoutApi(token.value).then((res: any) => {
@@ -337,7 +342,7 @@ const logo = ref();
 const linksList = ref()
 onMounted(() => {
 
-    getLink().then((res: any)=>{
+    getLink().then((res: any) => {
         linksList.value = res.list
     })
 
@@ -368,49 +373,55 @@ onMounted(() => {
 </script>
 <style scoped lang="scss">
 .header {
-    height: 79px;
+    height: 85px;
     background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 1291px;
     margin: auto;
+
     .header-left {
         display: flex;
         align-items: center;
         margin-right: 270px;
+
         .hearer-logo {
-            width: 58px;
-            height: 58px;
+            width: 62px;
+            height: 62px;
             margin-right: 7px;
         }
 
         .hearer-title {
             width: 642px;
-            font-family: 'YouSheBiaoTiYuan';
+            font-family: 'SourceHanSerifCN-Bold';
             padding-top: 8px;
+
             .title {
-                font-size: 34px;
+                font-size: 25px;
                 font-weight: 400;
-                color: #0a7860;
                 line-height: 24px;
+                font-weight: bold;
+                letter-spacing: 8px;
+                margin-bottom: 5px;
             }
 
             .tips {
                 font-size: 12px;
                 font-weight: 400;
-                letter-spacing: -0.4px;
-                color: #0a7860;
+                font-weight: bold;
             }
         }
     }
+
     .header-right {
         flex-shrink: 0;
 
         .hearer-user {
             display: flex;
             align-items: center;
-            color: #0a7860;
+            color: #555555;
+
             .user-img {
                 background: #237ff0;
                 margin-right: 8px;
@@ -418,55 +429,68 @@ onMounted(() => {
                 border-radius: 28px;
                 height: 32px;
             }
-            .icon{
+
+            .icon {
                 font-size: 20px;
             }
+
             .name {
-                font-family: '思源黑体';
+                font-family: 'SourceHanSansCN-Bold';
                 font-size: 16px;
                 cursor: pointer;
             }
+
             .el-divider--vertical {
                 border-left: 1px #3d3d3d solid;
             }
+
             .login {
                 margin-left: 5px;
             }
         }
     }
 }
+
 .tab-list {
     width: 100%;
-    height: 56px;
+    height: 70px;
     display: flex;
     align-items: flex-end;
-    background-color: #e4f4e9;
+    background-color: rgba($color: #fff, $alpha: 0.3);
+    position: relative;
+    z-index: 999;
+
     .el-divider {
         border-left: 1px solid rgba(93, 93, 93, 1);
         margin: 4px 16px;
         height: 24px !important;
     }
+
     :deep(.el-menu) {
-        background-color: #e4f4e9;
+        background-color: rgba($color: #fff, $alpha: 0.3);
         width: 100%;
         border-bottom: none;
         justify-content: center;
         align-items: center;
-        height: 56px !important;
+        height: 70px !important;
+        font-family: 'SourceHanSansCN-Bold';
+
         .el-menu-item,
         .el-sub-menu {
             position: relative;
             padding: 0 26px;
             height: 100%;
-            > .el-sub-menu__title {
+
+            >.el-sub-menu__title {
                 padding: 0;
-                color: #0a7860;
+                color: #000;
             }
         }
+
         .el-menu-item,
         .el-sub-menu__title {
-            font-size: 16px;
-            color: #0a7860;
+            font-size: 20px;
+            color: #000;
             font-weight: bold;
             text-align: center;
             // &:hover {
@@ -480,43 +504,48 @@ onMounted(() => {
         .el-menu-item,
         .el-sub-menu {
             &:hover {
-                background-color: #0a7860;
-                color: #fff;
-                > .el-sub-menu__title {
+                background-color: #fff;
+                color: #000;
+
+                >.el-sub-menu__title {
                     background-color: transparent;
-                    color: #fff;
+                    color: #000;
                 }
             }
         }
 
-        .el-sub-menu__title > div {
+        .el-sub-menu__title>div {
             font-weight: bold;
         }
+
         .el-sub-menu__icon-arrow {
             display: none;
         }
+
         .is-active {
             border-bottom: none;
-            height: 56px !important;
+            height: 70px !important;
+
             .el-sub-menu__title {
                 border-bottom: none;
             }
+
             &::after {
                 content: attr(data-content);
-                height: 56px;
+                height: 70px;
                 position: absolute;
                 width: 100%;
-                height: 100%;
                 top: 0;
                 left: 0;
-                background-color: #0a7860;
-                color: #fff;
-                font-size: 16px;
+                background-color: #fff;
+                color: #000;
+                font-size: 20px;
                 text-align: center;
-                line-height: 56px;
+                line-height: 70px;
                 font-weight: bold;
             }
         }
+
         .el-menu-item.is-active,
         .el-sub-menu.is-active .el-sub-menu__title {
             border-radius: 8px;
@@ -544,28 +573,32 @@ onMounted(() => {
     margin: 0 auto;
     width: 100%;
     min-height: 175px;
+
     a {
         color: #969696;
         margin: 0 5px 0 5px;
         display: inline-block;
         text-decoration: none;
     }
+
     a:hover {
         color: #fff;
         text-decoration: none;
         background: none;
     }
+
     h3 {
         margin: 45px 200px;
         display: inline-block;
         font-size: 0;
         width: 230px;
         height: 50px;
-        background: url("https://qun.icve.com.cn/portalproject/9tk7anmyrbcwaexr1n9tg/sta_page/img/layout_long_logo.5606b99c.5606b99c.png")
-            no-repeat;
+        background: url("https://qun.icve.com.cn/portalproject/9tk7anmyrbcwaexr1n9tg/sta_page/img/layout_long_logo.5606b99c.5606b99c.png") no-repeat;
     }
+
     .footer-left {
         width: 40%;
+
         .ve-link {
             display: inline-block;
             width: 45%;
@@ -575,10 +608,12 @@ onMounted(() => {
             margin-right: 1em;
         }
     }
+
     .footer-right {
         width: 60%;
         padding-top: 50px;
     }
+
     .footer-copyright {
         font-size: 12px;
         color: #969696;
@@ -586,15 +621,18 @@ onMounted(() => {
         border-top: 1px solid #323232;
         clear: left;
         padding: 18px 0;
+
         p {
             display: inline-block;
             line-height: 1.25;
             margin: 0 40px 0;
         }
     }
+
     .copyright-ICP {
         vertical-align: middle;
     }
+
     .footer-text {
         padding-right: 6px;
         color: #fff;
@@ -614,18 +652,24 @@ onMounted(() => {
 
 <style lang="scss">
 .layout-menu-popper .el-menu--popup {
-    min-width: 113.99px;
+    min-width: 128px;
+    font-size: 20px;
     opacity: 1;
+
     .el-menu-item {
         justify-content: center;
-        color: #0A7860 !important;
+        color: #000 !important;
+        font-size: 20px;
+        height: 50px !important;
     }
-    .is-active{
-        background-color: #0A7860 !important;
+
+    .is-active {
+        background-color: #2e90fa !important;
         color: #fff !important;
     }
-    .el-menu-item:hover{
-        background-color: #0A7860 !important;
+
+    .el-menu-item:hover {
+        background-color: #2e90fa !important;
         color: #fff !important;
     }
 }

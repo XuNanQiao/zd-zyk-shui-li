@@ -77,7 +77,7 @@ export class HomeApi {
     /**资源库简介 */
     async projectGroupInfo() {
         let requestData: any = await request({
-            url: '/prod-api/website/projectGroupInfo/detail/info?shortUrl=dzlsgc',
+            url: '/prod-api/website/projectGroupInfo/detail/info?shortUrl=sdtmgc',
             method: 'GET'
         });
         return requestData;
@@ -109,7 +109,7 @@ export class HomeApi {
      */
     async projectInfo() {
         return await request({
-            url: '/prod-api/website/projectGroupInfo/detail/info?shortUrl=dzlsgc',
+            url: '/prod-api/website/projectGroupInfo/detail/info?shortUrl=sdtmgc',
             method: 'GET'
         });
     }
