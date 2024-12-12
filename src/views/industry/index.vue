@@ -59,31 +59,31 @@ let route = useRoute();
 const router = useRouter();
 const tags = ref([
     {
-        id: '45e1cd70-350a-4ff0-8550-fe19e201d3a9',
+        id: 'dd5186e5-bb0f-44d3-bdce-3beb0e9bf786',
         text: '产教融合',
         type: '2',
         icon: 'icon-chanpin'
     },
     {
-        id: 'bd0c3431-c62b-4c22-bde5-906795644070',
+        id: 'ffe068d1-e94e-4779-95cf-6c6b7fd11fe9',
         text: '城市体检',
         type: '2',
         icon: 'icon-chengshi'
     },
     {
-        id: 'ff772cd3-5e22-489e-b923-3b7f96f7993c',
+        id: '93d95cd2-3b82-4b5a-84ef-6b9385d98e4f',
         text: '学生案例',
         type: '2',
         icon: 'icon-wodekecheng'
     },
     {
-        id: 'b0917cb3-ba7d-432b-aaaa-0d4936ab18a8',
+        id: 'adedd809-31d0-42e1-a845-d1b652594b06',
         text: '数字教材',
         type: '1',
         icon: 'icon-shuzijiaocai'
     },
     {
-        id: '769e3ef6-2fe3-4dbe-a4c0-82c18dd7b501',
+        id: 'f097e5fd-5042-4992-a439-157ff555a756',
         text: '知识图谱',
         type: '2',
         icon: 'icon-tuozhan'
@@ -137,6 +137,7 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/industry-bg.png');
+        margin-top: -70px;
     }
 }
 </style>

@@ -32,7 +32,7 @@
                 <div class="cour-list" v-else-if="tagsType=='2'">
                     <div class="course-item" @click="goDetail(item)" v-for="(item,index) in dataList" :key="index">
                         <div class="course-img-box">
-                            <img class="course-img" :src="item.file" alt />
+                            <img class="course-img" :src="item.file" alt="" />
                         </div>
                         <div class="course-name ellipsis">{{ item.DocTitle }}</div>
                     </div>
@@ -60,38 +60,38 @@ let route = useRoute();
 const router = useRouter();
 const tags = ref([
     {
-        id: '4ef2a4d8-ef2d-4c56-9e37-318eb71f068f',
+        id: '4a3d7070-9cf8-49b0-8835-cc18f5e23cff',
         text: '专业介绍',
         type: '1',
         icon: 'icon-jieshaoxinxi_o'
     },
     {
-        id: 'a11c4caf-14f1-429c-9d68-e218afebe302',
+        id: '82da12d1-9b29-4beb-b3fe-61324ff4f3a3',
         text: '专业标准',
         type: '1',
         icon: 'icon-zhuanyemingcheng'
     },
     {
-        id: 'b3e1ad6e-ec81-4434-950a-1234b2556c82',
+        id: '19adfa83-de18-4755-8ebc-bae02d955c9a',
         text: '行业标准',
         type: '1',
         icon: 'icon-hangye'
     },
     {
-        id: '5e8cab26-f109-4e95-b1c0-3d7f4be102bb',
+        id: 'e247440c-b04c-4ec3-95bc-cdb77dfca5ed',
         text: '职业标准',
         type: '1',
         icon: 'icon-zhiye'
     },
-    { id: '08183752-d840-41c0-bc12-485375b20119', text: '人培方案', type: '2', icon: 'icon-renpeibiaozhun' },
-    { id: '08183752-d840-41c0-bc12-485375b20119', text: '课程标准', type: '2', icon: 'icon-tongshikecheng' },
-    { id: '08183752-d840-41c0-bc12-485375b20119', text: '专业课程体系', type: '2', icon: 'icon-zhuanyezhuanyeke' },
-    { id: '08183752-d840-41c0-bc12-485375b20119', text: '优秀教学案例', type: '2', icon: 'icon-tuijian' },
+    { id: 'd2f629cc-8909-4adb-8507-fce717443349', text: '人培方案', type: '2', icon: 'icon-renpeibiaozhun' },
+    { id: 'c49f5315-405b-4b87-829b-8222a00f60d2', text: '课程标准', type: '2', icon: 'icon-tongshikecheng' },
+    { id: '061b183d-ff22-47d1-b9bb-a3f5f5da6e12', text: '专业课程体系', type: '2', icon: 'icon-zhuanyezhuanyeke' },
+    { id: '0a0b3aa5-9cb0-446c-8fca-e921dd810775', text: '优秀教学案例', type: '2', icon: 'icon-tuijian' },
     
 ]);
 const total = ref(100);
 const tagsType = ref('1');
-const dataList = ref([]);
+const dataList = ref<any>([]);
 const search = reactive({
     nodeId: '',
     pageSize: 9,
@@ -137,6 +137,7 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/professional-bg.png');
+        margin-top: -70px;
     }
 }
 </style>

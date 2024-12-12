@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 11:35:07
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2024-12-09 14:56:02
+ * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\virtualSimulation\index.vue
  * 
@@ -12,7 +12,7 @@
         <div class="professional-banner"></div>
         <div class="page-content">
             <div class="page-left">
-                <img class="page-left-bg" src="@/assets/images/banner/virtualSimulation-left-bg.png" />
+                <!-- <img class="page-left-bg" src="@/assets/images/banner/virtualSimulation-left-bg.png" /> -->
                 <div class="list">
                     
                     <div class="item" :class="{ active: search.nodeId  == item.id }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">

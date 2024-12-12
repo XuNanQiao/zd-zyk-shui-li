@@ -172,8 +172,10 @@ $maxWidth: 1320px;
 
 // 引入 Element UI 的主样式文件
 .page-box {
+    background-color: #fff !important;
     .professional-banner {
         background-image: url('@/assets/images/banner/sourceMaterial-bg.png');
+        margin-top: -70px;
     }
 
     .tags-box {

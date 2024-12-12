@@ -59,25 +59,25 @@ let route = useRoute();
 const router = useRouter();
 const tags = ref([
     {
-        id: '7f22d172-2e3d-447e-8c1b-ec73d3f8a990',
+        id: '9db8e509-5de8-4d6b-9c0b-831b2b682edc',
         text: '行业岗位培训',
         type: '2',
         icon: 'icon-gangweiguanli'
     },
     {
-        id: 'dd8e207f-f556-41b4-a298-e57bd01285a1',
+        id: '128f6b43-9157-44f7-819d-9862e189e0b6',
         text: '创新创业培训',
         type: '2',
         icon: 'icon-chuangye3'
     },
     {
-        id: '821472e3-14f2-4cf5-a5e9-ad2686ac8935',
+        id: '7fb75cc4-ea6b-4969-abd9-e9cb59c58768',
         text: '赛证融通培训',
         type: '2',
         icon: 'icon-bisai'
     },
     {
-        id: '7f021f5f-6d9c-4e71-8ba6-7de52c7b06ef',
+        id: '27e43636-93a5-47e9-8f15-2a8f2a663fb9',
         text: '虚拟仿真培训',
         type: '2',
         icon: 'icon-VRD'
@@ -131,6 +131,7 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/trainingCenter-bg.png');
+        margin-top: -70px;
     }
 }
 </style>

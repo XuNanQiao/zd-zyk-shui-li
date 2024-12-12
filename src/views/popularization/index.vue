@@ -83,26 +83,26 @@ let route = useRoute();
 const router = useRouter();
 const tags = ref([
     {
-        id: '3028829c-9058-43dc-8d33-e73f6518c803',
+        id: '9b67e2c5-ae3d-4fe6-906e-e2228eb3ad78',
         text: '课程试题库',
         type: '2',
         icon: 'icon-kecheng'
     },
     {
-        id: '3028829c-9058-43dc-8d33-e73f6518c803',
+        id: 'dfcb2230-a345-4ae8-bc44-8ce247462dc3',
         text: '职业技能试题库',
         type: '2',
         icon: 'icon-zhiyejineng'
     },
     {
-        id: '3028829c-9058-43dc-8d33-e73f6518c803',
+        id: '82e415a0-1314-4ab1-af7b-0d6fc7b46035',
         text: '技能竞赛试题库',
         type: '2',
         icon: 'icon-gerenzhiyeguihua'
     },
     {
-        id: '16657b4c-fdec-433b-8e08-6441b7852449',
-        text: 'X证书测试题库',
+        id: '785f5e1a-32ac-4037-8e94-e00908688e9f',
+        text: '1+X证书测试题库',
         type: '2',
         icon: 'icon-menu_jsdt'
     }
@@ -155,6 +155,7 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/popularization-bg.png');
+        margin-top: -70px;
     }
 }
 </style>

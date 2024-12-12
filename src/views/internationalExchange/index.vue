@@ -59,13 +59,13 @@ let route = useRoute();
 const router = useRouter();
 const tags = ref([
     {
-        id: '5321afae-9eb1-4ca9-b913-76de5cdeb5b4',
+        id: 'e673e0f5-c60d-483b-9e1b-8cf76c9e938c',
         text: '职教出海案例',
         type: '2',
         icon: 'icon-chuhaizhunbei'
     },
     {
-        id: '8854252a-83da-4afc-b2a1-2f3ee371c4c8',
+        id: '052cba86-76ce-4588-9777-80127b41070f',
         text: '国际交流资源',
         type: '2',
         icon: 'icon-guojiwuliu'
@@ -119,6 +119,7 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/internationalExchange-bg.png');
+        margin-top: -70px;
     }
 }
 </style>

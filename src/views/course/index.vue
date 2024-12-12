@@ -14,7 +14,7 @@
             <div class="page-left">
                 <img class="page-left-bg" src="@/assets/images/banner/course-left-bg.png" />
                 <div class="list">
-                    <div class="item" :class="{ active: search.tags    == item.text }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
+                    <div class="item" :class="{ active: search.educationType == item.text }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
                         <div class="befor-icon iconfont" :class="item.icon"></div>
                         <div class="text">{{ item.text }}</div>
 <!--                         <div class="after-icon iconfont icon-youjiantou"></div> -->
@@ -25,7 +25,7 @@
                 <div class="cour-list">
                     <div class="course-item" @click="goDetail(item)" v-for="(item,index) in dataList" :key="index">
                         <div class="course-img-box">
-                            <img class="course-img" :src="item.imageUrl" alt />
+                            <img class="course-img" :src="item.imageUrl" alt="" />
                         </div>
                         <div class="course-name ellipsis">{{ item.name }}</div>
                         <div class="course-tips ellipsis">{{ item.schoolName }}</div>
@@ -92,38 +92,40 @@ const tags = ref([
     }
 ]);
 const total = ref(100);
-const dataList = ref([]);
+const dataList = ref<any>([]);
 const search = reactive({
-    tags: '',
+    courseType: '',
+    educationType: '',
     pageSize: 9,
-    sort: 'create_time',
     pageNum: 1
 });
 const handChange = (item: any) => {
-    search.tags = item.text;
+    search.educationType = item.text;
     getList();
 };
 const getList = () => {
     let data={...search}
-    data.tags ='食品生物技术'
-    homeApi.getCourseList3(data).then((res) => {
-        total.value = res.total;
-        dataList.value = res.rows;
-    });
+    data.courseType ='学历课程'
+    homeApi.getCourseList(data).then((res) => {
+        if (res.code == 200) {
+            dataList.value = res.rows
+            total.value = res.total;
+        }
+    })
 };
 const goDetail = (item: any) => {
     window.open(`https://zyk.icve.com.cn/courseDetailed?id=${item.id}`, '_blank', 'noreferrer');
 };
 onMounted(async () => {
     proxy.bus.on('course' + 'Reload', (index: number) => {
-        search.tags = tags.value[index].text;
+        search.educationType = tags.value[index].text;
         getList();
     });
     if (route.query.index) {
         let index = Number(route.query.index);
-        search.tags = tags.value[index].text;
+        search.educationType = tags.value[index].text;
     } else {
-        search.tags = tags.value[0].text;
+        search.educationType = tags.value[0].text;
     }
     getList();
 });
@@ -137,6 +139,7 @@ $--el-pagination-button-bg-color: '#fff';
 .page-box {
     .professional-banner {
         background-image: url('@/assets/images/banner/course-bg.png');
+        margin-top: -70px;
     }
 }
 .course-name {
