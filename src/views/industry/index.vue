@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 14:08:19
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2024-12-19 17:18:37
+ * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\industry\index.vue
  * 
@@ -14,7 +14,13 @@
             <div class="page-left">
                 <img class="page-left-bg" src="@/assets/images/banner/industry-left-bg.png" />
                 <div class="list">
-                    <div class="item" :class="{ active: search.nodeId  == item.id }" v-for="(item, index) in tags" :key="index" @click="handChange(item)">
+                    <div
+                        class="item"
+                        :class="{ active: search.nodeId  == item.id }"
+                        v-for="(item, index) in tags"
+                        :key="index"
+                        @click="handChange(item)"
+                    >
                         <div class="befor-icon iconfont" :class="item.icon"></div>
                         <div class="text">{{ item.text }}</div>
                         <div class="after-icon iconfont icon-youjiantou"></div>
@@ -23,14 +29,24 @@
             </div>
             <div class="page-right">
                 <div class="data-list-text" v-if="tagsType=='1'">
-                    <div class="data-item" @click="goDetail(item)" v-for="(item, index) in dataList" :key="index">
+                    <div
+                        class="data-item"
+                        @click="goDetail(item)"
+                        v-for="(item, index) in dataList"
+                        :key="index"
+                    >
                         <div class="item-text-icon"></div>
                         <div class="item-text ellipsis">{{ item.DocTitle }}</div>
                         <div class="item-tips">{{ item.CreateTime }}</div>
                     </div>
                 </div>
                 <div class="cour-list" v-else-if="tagsType=='2'">
-                    <div class="course-item" @click="goDetail(item)" v-for="(item,index) in dataList" :key="index">
+                    <div
+                        class="course-item"
+                        @click="goDetail(item)"
+                        v-for="(item,index) in dataList"
+                        :key="index"
+                    >
                         <div class="course-img-box">
                             <img class="course-img" :src="item.file" alt />
                         </div>
@@ -39,7 +55,15 @@
                 </div>
                 <div class="page-bottom">
                     <el-config-provider :locale="zhCn">
-                        <el-pagination v-model:current-page="search.page " v-model:page-size="search.pageSize" background layout="prev, pager, next, jumper" :total="total" @size-change="getList" @current-change="getList" />
+                        <el-pagination
+                            v-model:current-page="search.page "
+                            v-model:page-size="search.pageSize"
+                            background
+                            layout="prev, pager, next, jumper"
+                            :total="total"
+                            @size-change="getList"
+                            @current-change="getList"
+                        />
                     </el-config-provider>
                 </div>
             </div>
@@ -85,7 +109,7 @@ const tags = ref([
     {
         id: 'f097e5fd-5042-4992-a439-157ff555a756',
         text: '知识图谱',
-        type: '2',
+        type: '3',
         icon: 'icon-tuozhan'
     }
 ]);
@@ -98,9 +122,13 @@ const search = reactive({
     page: 1
 });
 const handChange = (item: any) => {
-    search.nodeId = item.id;
-    tagsType.value = item.type;
-    getList();
+    if(item.type == 3) {
+        window.open(`https://specialty3d.zhihuishu.com/home/1843599388807663616`, '_blank', 'noreferrer');
+    } else {
+        search.nodeId = item.id;
+        tagsType.value = item.type;
+        getList();
+    }
 };
 const getList = () => {
     professionalApi.newmaterialMaterial(search).then((res) => {
@@ -109,18 +137,28 @@ const getList = () => {
     });
 };
 const goDetail = (item: any) => {
-    window.open(`https://zyk.icve.com.cn/materialDetailed?id=${item.id}`, '_blank', 'noreferrer');
+        window.open(`https://zyk.icve.com.cn/materialDetailed?id=${item.id}`, '_blank', 'noreferrer');
 };
 onMounted(async () => {
     proxy.bus.on('industryReload', (index: number) => {
-        search.nodeId = tags.value[index].id;
-        tagsType.value = tags.value[index].type;
-        getList();
+        if(index == 4) {
+            window.open(`https://specialty3d.zhihuishu.com/home/1843599388807663616`, '_blank', 'noreferrer');
+        } else {
+            search.nodeId = tags.value[index].id;
+            tagsType.value = tags.value[index].type;
+            getList();
+        }
     });
     if (route.query.index) {
-        let index = Number(route.query.index);
-        search.nodeId = tags.value[index].id;
-        tagsType.value = tags.value[index].type;
+        if (route.query.index == '4') {
+            window.open(`https://specialty3d.zhihuishu.com/home/1843599388807663616`, '_blank', 'noreferrer');
+            search.nodeId = tags.value[0].id;
+            tagsType.value = tags.value[0].type;
+        } else {
+            let index = Number(route.query.index);
+            search.nodeId = tags.value[index].id;
+            tagsType.value = tags.value[index].type;
+        }
     } else {
         search.nodeId = tags.value[0].id;
         tagsType.value = tags.value[0].type;

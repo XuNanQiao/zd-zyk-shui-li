@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-14 10:11:10
- * @LastEditTime: 2024-12-12 16:48:45
+ * @LastEditTime: 2025-02-21 11:17:09
  * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\HomeView.vue
@@ -20,8 +20,13 @@
         </el-carousel>
     </div>
     <div class="search-box">
-        <el-input class="search-input" placeholder="请输入关键词搜索课、微课、素材"></el-input>
-        <el-icon class="icon">
+        <el-input
+            v-model="searchKey"
+            class="search-input"
+            placeholder="请输入关键词搜索课、微课、素材"
+            @keyup.enter="toSearch"
+        ></el-input>
+        <el-icon class="icon" @click="toSearch">
             <Search />
         </el-icon>
     </div>
@@ -279,10 +284,7 @@ import { ref, computed, reactive, onMounted, getCurrentInstance } from 'vue';
 const { proxy } = getCurrentInstance();
 import { useRouter } from 'vue-router';
 import { HomeApi } from '@/assets/api/home';
-import { getNewsList } from "@/assets/api/common"
-import knowledge from './compontents/knowledge.vue';
-import cultivateBg1 from "@/assets/images/home/cultivate-bg1.png"
-import cultivateBg2 from "@/assets/images/home/cultivate-bg2.png"
+import {ElMessage} from "element-plus"
 const router = useRouter();
 const homeApi = new HomeApi();
 let data = reactive<any>({
@@ -350,6 +352,23 @@ const handleMouseenter = (index: any) => {
     }, 100)
 }
 
+const searchKey = ref('')
+const toSearch = () => {
+    if (!searchKey.value) {
+        ElMessage({
+            type: 'error',
+            message: "请输入搜索内容"
+        })
+        return
+    }
+    router.push({
+        path: '/search',
+        query: {
+            key: searchKey.value
+        }
+    })
+}
+
 
 onMounted(() => {
     getCourseList()
@@ -399,13 +418,14 @@ onMounted(() => {
 }
 
 .search-box {
+    position: sticky;
+    top: 0;
     width: 752px;
     height: 72px;
     border-radius: 217px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 0.25);
     margin: -36px auto 0;
-    position: relative;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -500,7 +520,7 @@ onMounted(() => {
                 color: rgba(0, 0, 0, 1);
                 text-align: left;
                 overflow: auto;
-                
+
             }
 
             .view {

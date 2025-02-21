@@ -166,8 +166,7 @@ const menuList = ref([
             { path: '/professional?index=3', name: '职业标准' },
             { path: '/professional?index=4', name: '人培方案' },
             { path: '/professional?index=5', name: '课程标准' },
-            { path: '/professional?index=6', name: '专业课程体系' },
-            { path: '/professional?index=7', name: '优秀教学案例' }
+            { path: '/professional?index=6', name: '优秀教学案例' }
         ]
     },
     // {

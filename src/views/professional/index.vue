@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 14:14:42
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2024-12-19 17:09:52
+ * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\professional\index.vue
  * 
@@ -83,9 +83,8 @@ const tags = ref([
         type: '1',
         icon: 'icon-zhiye'
     },
-    { id: 'd2f629cc-8909-4adb-8507-fce717443349', text: '人培方案', type: '2', icon: 'icon-renpeibiaozhun' },
+    { id: 'd2f629cc-8909-4adb-8507-fce717443349', text: '人培方案', type: '1', icon: 'icon-renpeibiaozhun' },
     { id: 'c49f5315-405b-4b87-829b-8222a00f60d2', text: '课程标准', type: '2', icon: 'icon-tongshikecheng' },
-    { id: '061b183d-ff22-47d1-b9bb-a3f5f5da6e12', text: '专业课程体系', type: '2', icon: 'icon-zhuanyezhuanyeke' },
     { id: '0a0b3aa5-9cb0-446c-8fca-e921dd810775', text: '优秀教学案例', type: '2', icon: 'icon-tuijian' },
     
 ]);

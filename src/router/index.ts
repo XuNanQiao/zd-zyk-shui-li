@@ -1,4 +1,13 @@
 /*
+ * @Author: JIANG
+ * @Date: 2024-12-09 09:28:20
+ * @LastEditTime: 2025-02-21 11:20:04
+ * @LastEditors: JIANG
+ * @Description: 
+ * @FilePath: \shui-li\src\router\index.ts
+ * 
+ */
+/*
  * @Author: ZHAO
  * @Date: 2024-01-10 16:42:49
  * @LastEditTime: 2024-11-18 16:24:41
@@ -9,7 +18,7 @@
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
 import layout from '@/layout/index.vue';
-
+console.log(import.meta.env.BASE_URL)
 const router = createRouter({
     history: createWebHashHistory(import.meta.env.BASE_URL), // 添加这一段解决问题
     scrollBehavior(to, from, savedPosition) {
@@ -108,6 +117,14 @@ const router = createRouter({
                     component: () => import('../views/projectInfo.vue'),
                     meta: {
                         title: '资源库简介'
+                    }
+                },
+                {
+                    path: '/search',
+                    name: 'search',
+                    component: () => import('../views/search.vue'),
+                    meta: {
+                        title: '搜索'
                     }
                 }
             ]

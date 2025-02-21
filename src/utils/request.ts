@@ -13,7 +13,7 @@ import { ElMessage } from 'element-plus';
 import { getTokenFromCookie, saveTokenToCookie } from '@/utils/cookie';
 import { useUserStore } from '@/stores/user';
 import { ElLoading } from 'element-plus';
-let loading;
+let loading: any;
 
 const service: any = axios.create({
     baseURL: import.meta.env.VITE_APP_API_URL as string, //接口统一域名
@@ -36,6 +36,7 @@ service.interceptors.request.use(
             text: 'Loading',
             background: 'rgba(0, 0, 0, 0.7)'
         });
+
         return config;
     },
     (error: any) => {
