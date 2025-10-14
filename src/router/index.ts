@@ -80,19 +80,11 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/virtualSimulation',
-                    name: 'virtualSimulation',
-                    component: () => import('../views/virtualSimulation/index.vue'),
-                    meta: {
-                        title: '虚仿中心'
-                    }
-                },
-                {
                     path: '/popularization',
                     name: 'popularization',
                     component: () => import('../views/popularization/index.vue'),
                     meta: {
-                        title: '粮心育人'
+                        title: '虚仿中心'
                     }
                 },
                 {
@@ -100,7 +92,7 @@ const router = createRouter({
                     name: 'research',
                     component: () => import('../views/research/index.vue'),
                     meta: {
-                        title: '粮韵文化馆'
+                        title: '课程思政案例库'
                     }
                 },
                 {
@@ -125,6 +117,14 @@ const router = createRouter({
                     component: () => import('../views/search.vue'),
                     meta: {
                         title: '搜索'
+                    }
+                },
+                {
+                    path: '/knowledge',
+                    name: 'knowledge',
+                    component: () => import('../views/knowledge/index.vue'),
+                    meta: {
+                        title: '知识图谱'
                     }
                 }
             ]

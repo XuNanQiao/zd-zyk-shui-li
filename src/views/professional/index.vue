@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-19 17:09:52
+ * @LastEditTime: 2025-04-24 17:11:41
  * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\professional\index.vue
@@ -62,7 +62,7 @@ const tags = ref([
     {
         id: '4a3d7070-9cf8-49b0-8835-cc18f5e23cff',
         text: '专业介绍',
-        type: '1',
+        type: '2',
         icon: 'icon-jieshaoxinxi_o'
     },
     {
@@ -77,15 +77,15 @@ const tags = ref([
         type: '1',
         icon: 'icon-hangye'
     },
-    {
-        id: 'e247440c-b04c-4ec3-95bc-cdb77dfca5ed',
-        text: '职业标准',
-        type: '1',
-        icon: 'icon-zhiye'
-    },
+    // {
+    //     id: 'e247440c-b04c-4ec3-95bc-cdb77dfca5ed',
+    //     text: '职业标准',
+    //     type: '1',
+    //     icon: 'icon-zhiye'
+    // },
     { id: 'd2f629cc-8909-4adb-8507-fce717443349', text: '人培方案', type: '1', icon: 'icon-renpeibiaozhun' },
     { id: 'c49f5315-405b-4b87-829b-8222a00f60d2', text: '课程标准', type: '2', icon: 'icon-tongshikecheng' },
-    { id: '0a0b3aa5-9cb0-446c-8fca-e921dd810775', text: '优秀教学案例', type: '2', icon: 'icon-tuijian' },
+    // { id: '0a0b3aa5-9cb0-446c-8fca-e921dd810775', text: '优秀教学案例', type: '2', icon: 'icon-tuijian' },
     
 ]);
 const total = ref(100);
@@ -135,7 +135,7 @@ $--el-pagination-button-bg-color: '#fff';
 // 引入 Element UI 的主样式文件
 .page-box {
     .professional-banner {
-        background-image: url('@/assets/images/banner/professional-bg.png');
+        background-image: url('@/assets/images/banner/professional-bg.jpg');
         margin-top: -70px;
     }
 }

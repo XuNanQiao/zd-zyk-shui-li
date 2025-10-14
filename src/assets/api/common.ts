@@ -1,10 +1,10 @@
 /*
  * @Author: JIANG
  * @Date: 2024-10-17 16:52:51
- * @LastEditTime: 2024-11-13 14:40:08
+ * @LastEditTime: 2025-04-23 16:58:34
  * @LastEditors: JIANG
  * @Description:
- * @FilePath: \weifang-drone\src\assets\api\common.ts
+ * @FilePath: \shui-li\src\assets\api\common.ts
  *
  */
 import request from '@/utils/request';
@@ -60,7 +60,7 @@ export const ztreeAll = (params: any) => {
  * @param typeId 所要查询节点Id
  * @returns
  */
-export const getNewsList = (params: any) => {
+export const getNewsList = (params?: any) => {
     let projectId = import.meta.env.VITE_APP_PROJECTID;
     return request({
         url: `/portalProject/ajax-portalproject-getNewsList`,

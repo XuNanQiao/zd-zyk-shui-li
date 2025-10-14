@@ -1,10 +1,10 @@
 /*
  * @Author: ZHAO
  * @Date: 2024-01-10 16:42:49
- * @LastEditTime: 2024-02-28 16:35:55
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2025-05-21 17:31:26
+ * @LastEditors: JIANG
  * @Description:
- * @FilePath: \simulationUser\src\main.ts
+ * @FilePath: \shui-li\src\main.ts
  *
  */
 import { createApp } from 'vue';

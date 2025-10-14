@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 13:58:24
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2025-07-31 14:28:56
+ * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\popularization\index.vue
  * 
@@ -82,27 +82,39 @@ import { ztreeAll } from '@/assets/api/common';
 let route = useRoute();
 const router = useRouter();
 const tags = ref([
+    // {
+    //     id: '9b67e2c5-ae3d-4fe6-906e-e2228eb3ad78',
+    //     text: '课程试题库',
+    //     type: '2',
+    //     icon: 'icon-kecheng'
+    // },
+    // {
+    //     id: 'dfcb2230-a345-4ae8-bc44-8ce247462dc3',
+    //     text: '职业技能试题库',
+    //     type: '2',
+    //     icon: 'icon-zhiyejineng'
+    // },
+    // {
+    //     id: '82e415a0-1314-4ab1-af7b-0d6fc7b46035',
+    //     text: '技能竞赛试题库',
+    //     type: '2',
+    //     icon: 'icon-gerenzhiyeguihua'
+    // },
+    // {
+    //     id: '785f5e1a-32ac-4037-8e94-e00908688e9f',
+    //     text: '1+X证书测试题库',
+    //     type: '2',
+    //     icon: 'icon-menu_jsdt'
+    // }
     {
-        id: '9b67e2c5-ae3d-4fe6-906e-e2228eb3ad78',
-        text: '课程试题库',
+        id: 'd65829a8-c6f3-440f-9297-a2e453ded5c4',
+        text: '专业基础项目',
         type: '2',
         icon: 'icon-kecheng'
     },
     {
-        id: 'dfcb2230-a345-4ae8-bc44-8ce247462dc3',
-        text: '职业技能试题库',
-        type: '2',
-        icon: 'icon-zhiyejineng'
-    },
-    {
-        id: '82e415a0-1314-4ab1-af7b-0d6fc7b46035',
-        text: '技能竞赛试题库',
-        type: '2',
-        icon: 'icon-gerenzhiyeguihua'
-    },
-    {
-        id: '785f5e1a-32ac-4037-8e94-e00908688e9f',
-        text: '1+X证书测试题库',
+        id: '6940e42f-839c-4739-8cce-0112be80e23f',
+        text: '专业核心项目',
         type: '2',
         icon: 'icon-menu_jsdt'
     }
@@ -154,7 +166,7 @@ $--el-pagination-button-bg-color: '#fff';
 // 引入 Element UI 的主样式文件
 .page-box {
     .professional-banner {
-        background-image: url('@/assets/images/banner/popularization-bg.png');
+        background-image: url('@/assets/images/banner/popularization-bg.jpg');
         margin-top: -70px;
     }
 }

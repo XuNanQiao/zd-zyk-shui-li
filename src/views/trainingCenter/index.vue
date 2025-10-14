@@ -1,10 +1,10 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-06 14:02:08
+ * @LastEditTime: 2025-07-31 14:15:21
  * @LastEditors: JIANG
  * @Description: 
- * @FilePath: \dezhou-cereal\src\views\trainingCenter\index.vue
+ * @FilePath: \shui-li\src\views\trainingCenter\index.vue
  * 
 -->
 <template>
@@ -59,29 +59,29 @@ let route = useRoute();
 const router = useRouter();
 const tags = ref([
     {
-        id: '9db8e509-5de8-4d6b-9c0b-831b2b682edc',
-        text: '行业岗位培训',
+        id: '1792da15-dfe0-4e2f-940c-90d8be0816f7',
+        text: '城市体检',
+        type: '2',
+        icon: 'icon-chengshitijian'
+    },
+    {
+        id: 'ddd14efb-fba4-4e84-b215-f7aa8da748aa',
+        text: '试验检测员',
         type: '2',
         icon: 'icon-gangweiguanli'
     },
     {
-        id: '128f6b43-9157-44f7-819d-9862e189e0b6',
-        text: '创新创业培训',
+        id: 'b72366ec-fb98-4588-ab79-1948b4fd4408',
+        text: '无损检测员',
         type: '2',
-        icon: 'icon-chuangye3'
-    },
-    {
-        id: '7fb75cc4-ea6b-4969-abd9-e9cb59c58768',
-        text: '赛证融通培训',
-        type: '2',
-        icon: 'icon-bisai'
-    },
-    {
-        id: '27e43636-93a5-47e9-8f15-2a8f2a663fb9',
-        text: '虚拟仿真培训',
-        type: '2',
-        icon: 'icon-VRD'
+        icon: 'icon-wusunjiancegongyi'
     }
+    // {
+    //     id: '27e43636-93a5-47e9-8f15-2a8f2a663fb9',
+    //     text: '虚拟仿真培训',
+    //     type: '2',
+    //     icon: 'icon-VRD'
+    // }
 ]);
 const total = ref(100);
 const tagsType = ref('1');
@@ -130,7 +130,7 @@ $--el-pagination-button-bg-color: '#fff';
 // 引入 Element UI 的主样式文件
 .page-box {
     .professional-banner {
-        background-image: url('@/assets/images/banner/trainingCenter-bg.png');
+        background-image: url('@/assets/images/banner/trainingCenter-bg.jpg');
         margin-top: -70px;
     }
 }

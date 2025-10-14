@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-14 10:11:10
- * @LastEditTime: 2025-02-21 11:17:09
+ * @LastEditTime: 2025-04-29 10:02:40
  * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\HomeView.vue
@@ -31,7 +31,24 @@
         </el-icon>
     </div>
     <div class="wrap1">
-        <div class="test-user"></div>
+        <div class="test-user">
+            <div class="user-item" @click="toOption('course', '0')">
+                <img src="@/assets/images/home/user1.png" alt="" />
+                <div class="item-box">学生用户</div>
+            </div>
+            <div class="user-item" @click="toOption('course', '0')">
+                <img src="@/assets/images/home/user2.png" alt="" />
+                <div class="item-box">教师用户</div>
+            </div>
+            <div class="user-item" @click="toOption('sourceMaterial')">
+                <img src="@/assets/images/home/user3.png" alt="" />
+                <div class="item-box">社会用户</div>
+            </div>
+            <div class="user-item" @click="toOption('trainingCenter', '0')">
+                <img src="@/assets/images/home/user4.png" alt="" />
+                <div class="item-box">企业用户</div>
+            </div>
+        </div>
         <div class="little-title">
             <div class="line-l"></div>
             <div class="title-box">资源库简介</div>
@@ -44,54 +61,72 @@
                 <!-- <div class="view" @click="goPage('/projectInfo')">查看详情>></div> -->
             </div>
         </div>
+        <div class="data-statistics">
+            <div class="statistics-item">
+                <div class="icon-box">
+                    <i class="iconfont icon-wodekecheng"></i>
+                </div>
+
+                <div>
+                    <span>课程统计</span>
+                    <span>{{ statistics.courseNumber }}</span>
+                </div>
+            </div>
+            <div class="statistics-item">
+                <div class="icon-box">
+                    <i class="iconfont icon-wodekecheng"></i>
+                </div>
+                <div>
+                    <span>微课统计</span>
+                    <span>{{ statistics.smallCourse }}</span>
+                </div>
+            </div>
+            <div class="statistics-item">
+                <div class="icon-box">
+                    <i class="iconfont icon-wodekecheng"></i>
+                </div>
+                <div>
+                    <span>素材统计</span>
+                    <span>{{ statistics.resourceNumber }}</span>
+                </div>
+            </div>
+            <div class="statistics-item">
+                <div class="icon-box">
+                    <i class="iconfont icon-wodekecheng"></i>
+                </div>
+                <div>
+                    <span>用户统计</span>
+                    <span>{{ statistics.userNumber }}</span>
+                </div>
+            </div>
+        </div>
         <div class="data-statistics-box">
             <div class="data-wrap">
-                <div class="data-statistics">
-                    <div class="statistics-item">
-                        <div class="icon-box">
-                            <i class="iconfont icon-wodekecheng"></i>
-                        </div>
-
-                        <div>
-                            <span>课程统计</span>
-                            <span>{{ statistics.courseNumber }}</span>
-                        </div>
-                    </div>
-                    <div class="statistics-item">
-                        <div class="icon-box">
-                            <i class="iconfont icon-wodekecheng"></i>
-                        </div>
-                        <div>
-                            <span>微课统计</span>
-                            <span>{{ statistics.smallCourse }}</span>
-                        </div>
-                    </div>
-                    <div class="statistics-item">
-                        <div class="icon-box">
-                            <i class="iconfont icon-wodekecheng"></i>
-                        </div>
-                        <div>
-                            <span>素材统计</span>
-                            <span>{{ statistics.resourceNumber }}</span>
-                        </div>
-                    </div>
-                    <div class="statistics-item">
-                        <div class="icon-box">
-                            <i class="iconfont icon-wodekecheng"></i>
-                        </div>
-                        <div>
-                            <span>用户统计</span>
-                            <span>{{ statistics.userNumber }}</span>
+                <div class="little-title">
+                    <div class="line-l"></div>
+                    <div class="title-box">行业资讯</div>
+                    <div class="line-r"></div>
+                </div>
+                <div class="news">
+                    <div
+                        v-for="item in newsList"
+                        :key="item.Id"
+                        class="nes-item"
+                        @click="toNext(item.linkUrl)"
+                    >
+                        <div class="block"></div>
+                        <div class="content">
+                            {{ item.title }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="talent-training-program">
-                <div class="left" v-html="data.text"></div>
-                <div class="right">
-                    <img src="@/assets/images/home/tag1.png" alt="" loading="lazy" />
-                    <div class="btn" @click="toOption('professional', 4)">查看更多</div>
-                </div>
+        </div>
+        <div class="talent-training-program">
+            <div class="left" v-html="constructState.trainingProgram"></div>
+            <div class="right">
+                <img src="@/assets/images/home/tag1.png" alt="" loading="lazy" />
+                <div class="btn" @click="toOption('professional', '4')">查看更多</div>
             </div>
         </div>
         <div class="little-title">
@@ -125,10 +160,10 @@
                 </div>
             </div>
         </div>
-        <div class="more-btn" @click="toOption('course', 0)">查看更多</div>
+        <div class="more-btn" @click="toOption('course', '0')">查看更多</div>
     </div>
     <div class="politics-box">
-        <div class="more-btn t1" @click="toOption('research', 0)">查看更多</div>
+        <div class="more-btn t1" @click="toOption('research', '0')">查看更多</div>
     </div>
     <div class="question-bank">
         <div class="little-title">
@@ -141,7 +176,7 @@
                 class="question-bank-item"
                 :class="{ 'is-active': qusetionBankIndex == 1 }"
                 @mouseenter="handleMouseenter(1)"
-                @click="toOption('popularization', 0)"
+                @click="toOption('popularization', '0')"
             >
                 <div class="item-text-box">
                     <img
@@ -156,7 +191,7 @@
                 class="question-bank-item"
                 :class="{ 'is-active': qusetionBankIndex == 2 }"
                 @mouseenter="handleMouseenter(2)"
-                @click="toOption('popularization', 1)"
+                @click="toOption('popularization', '1')"
             >
                 <div class="item-text-box">
                     <img
@@ -171,7 +206,7 @@
                 class="question-bank-item"
                 :class="{ 'is-active': qusetionBankIndex == 3 }"
                 @mouseenter="handleMouseenter(3)"
-                @click="toOption('popularization', 2)"
+                @click="toOption('popularization', '2')"
             >
                 <div class="item-text-box">
                     <img
@@ -186,7 +221,7 @@
                 class="question-bank-item"
                 :class="{ 'is-active': qusetionBankIndex == 4 }"
                 @mouseenter="handleMouseenter(4)"
-                @click="toOption('popularization', 3)"
+                @click="toOption('popularization', '3')"
             >
                 <div class="item-text-box">
                     <img
@@ -281,6 +316,7 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, reactive, onMounted, getCurrentInstance } from 'vue';
+import {getNewsList} from "@/assets/api/common"
 const { proxy } = getCurrentInstance();
 import { useRouter } from 'vue-router';
 import { HomeApi } from '@/assets/api/home';
@@ -335,9 +371,14 @@ const getCourseList = () => {
     })
 }
 
-const toOption = (url: string, index: number) => {
-    router.push(`/${url}?index=${index}`);
-    proxy.bus.emit(`${url}Reload`, index);
+const toOption = (url: string, index?: string) => {
+    if (index) {
+        router.push(`/${url}?index=${index}`);
+        proxy.bus.emit(`${url}Reload`, index);
+    } else {
+        router.push(`/${url}`);
+    }
+
 };
 
 const qusetionBankIndex = ref(1)
@@ -369,6 +410,8 @@ const toSearch = () => {
     })
 }
 
+const newsList = ref()
+
 
 onMounted(() => {
     getCourseList()
@@ -380,6 +423,11 @@ onMounted(() => {
         statistics.value = res.data;
     });
     gatProjectInfo();
+    getNewsList({typeId:'cdb62bab5c204cb0b3017a4bb4befb72'}).then((res) => {
+        console.log(JSON.parse(res.newslist).obj, '====reererere');
+        newsList.value = JSON.parse(res.newslist).obj
+
+    })
 
 });
 </script>
@@ -448,51 +496,70 @@ onMounted(() => {
     }
 }
 
-.user-box {
-    width: 964px;
-    height: 124px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
-    margin: 20px auto;
-    display: flex;
-    justify-content: space-evenly;
-    position: relative;
-    z-index: 999;
-
-    .user-item {
-        text-align: center;
-        padding-top: 15px;
-
-        .user-img {
-            width: 64px;
-            height: 64px;
-        }
-
-        .user-tupe {
-            font-size: 20px;
-            font-weight: bold;
-            color: #000000;
-        }
-    }
-}
-
 .wrap1 {
-    height: 2006px;
+    height: 2156px;
     background-image: url('@/assets/images/home/wrap1-bg.png');
     background-size: 100% 100%;
     padding-bottom: 26px;
+    position: relative;
 
     .test-user {
         width: 1320px;
         height: 112px;
-        background-image: url('@/assets/images/home/fourUser.png');
+        // background-image: url('@/assets/images/home/fourUser.png');
         background-size: 100% 100%;
         margin: 37px auto 20px;
+        display: flex;
+        justify-content: space-evenly;
+        position: relative;
+
+        .user-item{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            img {
+                // width: 76px;
+                height: 110px;
+                margin-right: 20px;
+            }
+            .item-box{
+                width: 104px;
+                height: 28px;
+                opacity: 1;
+                border-radius: 16px;
+                background: rgba(46, 144, 250, 0.1);
+                box-shadow: 0px 0px 4px  rgba(0, 0, 0, 0.25);
+                color: rgba(46, 144, 250, 1);
+                font-weight: bold;
+                text-align: center;
+                line-height: 28px;
+                &::before{
+                    content: '';
+                    width: 9px;
+                    height: 9px;
+                    opacity: 1;
+                    background: rgba(46, 144, 250, 1);
+                    display: inline-block;
+                    border-radius: 50%;
+                    margin-right: 6px;
+                }
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 1320px;
+            height: 7px;
+            opacity: 1;
+            border-radius: 225px;
+            background: rgba(21, 112, 239, 1);
+        }
     }
 
     .intro {
-        margin: 50px auto;
+        margin: 50px auto 30px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -537,9 +604,41 @@ onMounted(() => {
         }
     }
 
+    .data-statistics {
+        width: 1226px;
+        height: 125px;
+        font-family: YouSheBiaoTiYuan;
+        font-style: italic;
+        font-size: 30px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+
+        .statistics-item {
+            display: flex;
+            align-items: center;
+
+            .icon-box {
+                font-size: 30px;
+                width: 49px;
+                height: 49px;
+                border-radius: 50%;
+                background-color: #1570EF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                i {
+                    color: #fff;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
     .data-statistics-box {
         width: 1320px;
-        height: 558px;
+        height: 322px;
         background-image: url('@/assets/images/home/data-bg.png');
         background-repeat: no-repeat;
         background-position: right 0;
@@ -547,85 +646,38 @@ onMounted(() => {
         margin: auto;
 
         .data-wrap {
-            height: 320px;
-            padding-top: 94px;
+            width: 715px;
+            height: 322px;
 
-            .data-statistics {
-                width: 593px;
-                height: 125px;
-                font-family: YouSheBiaoTiYuan;
-                font-style: italic;
-                font-size: 25px;
-                display: grid;
-                grid-template-columns: 50% 50%;
-                grid-gap: 35px 0px;
-                margin-left: 130px;
-
-                .statistics-item {
+            .news{
+                padding-left: 20px;
+                height: 260px;
+                overflow-y: scroll;
+                .nes-item{
                     display: flex;
                     align-items: center;
-
-                    .icon-box {
-                        font-size: 30px;
-                        width: 49px;
-                        height: 49px;
-                        border-radius: 50%;
-                        background-color: #1570EF;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-
-                        i {
-                            color: #fff;
-                            font-size: 30px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                    .block{
+                        margin-right: 10px;
+                        width: 9px;
+                        height: 9px;
+                        transform: rotate(-45deg);
+                        background: rgba(255, 255, 255, 0.47);
+                        border: 1px solid rgba(21, 112, 239, 0.54);
+                        box-shadow: 0px 0px 4px  rgba(33, 144, 255, 0.59);
+                        filter: blur(8rpx);
+                    }
+                    .content{
+                        font-size: 20px;
+                        width: 650px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        &:hover {
+                            color: rgba(21, 112, 239, 1);
                         }
                     }
-                }
-            }
-        }
-
-        .talent-training-program {
-            height: 236px;
-            padding: 37px 0px 37px 58px;
-            background-color: #1570EF;
-            display: flex;
-            align-items: center;
-
-            .left {
-                width: 838px;
-                height: 162px;
-                font-size: 20px;
-                color: #fff;
-                line-height: 40px;
-                text-indent: 2em;
-                vertical-align: top;
-                display: inline-flex;
-                flex-wrap: wrap;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: 4;
-            }
-
-            .right {
-                img {
-                    margin-bottom: 25px;
-                }
-
-                .btn {
-                    width: 110px;
-                    height: 34px;
-                    border-radius: 16px;
-                    background: #EAF3FE;
-                    box-shadow: 0px 0px 4px  rgba(0, 0, 0, 0.25);
-                    text-align: center;
-                    line-height: 34px;
-                    color: #2E90FA;
-                    font-size: 20px;
-                    font-weight: bold;
-                    margin: auto;
-                    cursor: pointer;
                 }
             }
         }
@@ -680,6 +732,54 @@ onMounted(() => {
         }
     }
 
+    .talent-training-program {
+        width: 1320px;
+        height: 236px;
+        padding: 37px 0px 37px 58px;
+        background-color: #1570EF;
+        display: flex;
+        align-items: center;
+        margin: 18px auto 0;
+        box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.25);
+
+        .left {
+            width: 808px;
+            height: 162px;
+            font-size: 20px;
+            color: #fff;
+            line-height: 40px;
+            text-indent: 1em;
+            vertical-align: top;
+            display: inline-flex;
+            flex-wrap: wrap;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 4;
+        }
+
+        .right {
+            img {
+                margin-bottom: 25px;
+            }
+
+            .btn {
+                width: 110px;
+                height: 34px;
+                border-radius: 16px;
+                background: #EAF3FE;
+                box-shadow: 0px 0px 4px  rgba(0, 0, 0, 0.25);
+                text-align: center;
+                line-height: 34px;
+                color: #2E90FA;
+                font-size: 20px;
+                font-weight: bold;
+                margin: auto;
+                cursor: pointer;
+            }
+        }
+    }
 
 
 

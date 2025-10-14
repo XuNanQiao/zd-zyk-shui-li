@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2024-12-09 14:49:34
+ * @LastEditTime: 2025-07-31 14:25:49
  * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\layout\index.vue
@@ -38,7 +38,33 @@
         </div>
     </div>
     <div class="tab-list">
-        <el-menu
+        <ul type="none">
+            <li
+                :class="{ 'nav-is-active': defaultPath == item.path }"
+                v-for="item in menuList"
+                :key="item.path"
+            >
+                <div v-if="item.children && item.children.length > 0">
+                    <div class="nav-title" @click="turnToPage(item.path)">
+                        <span>{{ item.name }}</span>
+                    </div>
+                    <div class="popup-box" :class="getPopupClassName(item.name)">
+                        <div
+                            class="popup-item"
+                            :class="{ 'popup-is-active': defaultFullPath == i.path }"
+                            v-for="i in item.children"
+                            @click="turnToPage(i.path)"
+                        >
+                            <span>{{ i.name }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="nav-title" @click="turnToPage(item.path)">
+                    <span>{{ item.name }}</span>
+                </div>
+            </li>
+        </ul>
+        <!-- <el-menu
             :default-active="defaultActive"
             popper-class="layout-menu-popper"
             class="el-menu-popper-demo"
@@ -71,7 +97,7 @@
                     >{{ item.name }}</el-menu-item
                 >
             </template>
-        </el-menu>
+        </el-menu> -->
     </div>
     <router-view></router-view>
     <div class="footer">
@@ -86,17 +112,47 @@
                     <h3 class="footer-logo">高等教育出版社</h3>
                     <div class="footer-text">
                         <p>
-                            <a href="https://www.icve.com.cn/portal_new/apply/apply.html" target="_blank" class="ve-link">开通项目申请表</a>
+                            <a
+                                href="https://www.icve.com.cn/portal_new/apply/apply.html"
+                                target="_blank"
+                                class="ve-link"
+                                >开通项目申请表</a
+                            >
                             &nbsp;|&nbsp;
-                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=1" target="_blank" class="ve-link">平台简介</a>
+                            <a
+                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=1"
+                                target="_blank"
+                                class="ve-link"
+                                >平台简介</a
+                            >
                             &nbsp;|&nbsp;
-                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=2" target="_blank" class="ve-link">知识产权</a>
+                            <a
+                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=2"
+                                target="_blank"
+                                class="ve-link"
+                                >知识产权</a
+                            >
                             &nbsp;|&nbsp;
-                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=3" target="_blank" class="ve-link">免责声明</a>
+                            <a
+                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=3"
+                                target="_blank"
+                                class="ve-link"
+                                >免责声明</a
+                            >
                             &nbsp;|&nbsp;
-                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=4" target="_blank" class="ve-link">意见反馈</a>
+                            <a
+                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=4"
+                                target="_blank"
+                                class="ve-link"
+                                >意见反馈</a
+                            >
                             &nbsp;|&nbsp;
-                            <a href="https://www.icve.com.cn/portal_new/platform/platform.html?page=5" target="_blank" class="ve-link">联系我们</a>
+                            <a
+                                href="https://www.icve.com.cn/portal_new/platform/platform.html?page=5"
+                                target="_blank"
+                                class="ve-link"
+                                >联系我们</a
+                            >
                             &nbsp;|&nbsp;
                             <a
                                 href="https://www.icve.com.cn/portal_new/platform/policy.html"
@@ -113,7 +169,10 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007836">
+                <a
+                    target="_blank"
+                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007836"
+                >
                     <p>京公网安备 11010202007836号</p>
                 </a>
                 <span>Copyright©2014-2019 高等教育出版社</span>
@@ -143,11 +202,15 @@ import { ztreeAll } from '@/assets/api/common';
 
 import { HomeApi } from '@/assets/api/home';
 const homeApi = new HomeApi();
-// const defaultActive = ref('/home');
-const defaultActive = computed(() => {
+const defaultPath = computed(() => {
+    const { meta, fullPath, path } = route;
+    if (meta.activeMenu) {
+        return meta.activeMenu;
+    }
+    return path;
+});
+const defaultFullPath = computed(() => {
     const { meta, fullPath } = route;
-
-    // if set path, the sidebar will highlight the path you set
     if (meta.activeMenu) {
         return meta.activeMenu;
     }
@@ -163,10 +226,10 @@ const menuList = ref([
             { path: '/professional?index=0', name: '专业介绍' },
             { path: '/professional?index=1', name: '专业标准' },
             { path: '/professional?index=2', name: '行业标准' },
-            { path: '/professional?index=3', name: '职业标准' },
-            { path: '/professional?index=4', name: '人培方案' },
-            { path: '/professional?index=5', name: '课程标准' },
-            { path: '/professional?index=6', name: '优秀教学案例' }
+            // { path: '/professional?index=3', name: '职业标准' },
+            { path: '/professional?index=3', name: '人培方案' },
+            { path: '/professional?index=4', name: '课程标准' },
+            // { path: '/professional?index=6', name: '优秀教学案例' }
         ]
     },
     // {
@@ -195,21 +258,24 @@ const menuList = ref([
         path: '/trainingCenter',
         name: '培训中心',
         children: [
-            { path: '/trainingCenter?index=0', name: '行业岗位培训' },
-            { path: '/trainingCenter?index=1', name: '创新创业培训' },
-            { path: '/trainingCenter?index=2', name: '赛证融通培训' },
-            { path: '/trainingCenter?index=3', name: '虚拟仿真培训' }
+            // { path: '/trainingCenter?index=0', name: '行业岗位培训' },
+            // { path: '/trainingCenter?index=1', name: '创新创业培训' },
+            // { path: '/trainingCenter?index=2', name: '赛证融通培训' },
+            // { path: '/trainingCenter?index=3', name: '虚拟仿真培训' }
+            { path: '/trainingCenter?index=0', name: '城市体检' },
+            { path: '/trainingCenter?index=1', name: '试验检测员' },
+            { path: '/trainingCenter?index=2', name: '无损检测员' }
         ]
     },
     {
         path: '/industry',
         name: '特色资源中心',
         children: [
-            { path: '/industry?index=0', name: '产教融合' },
-            { path: '/industry?index=1', name: '城市体检' },
-            { path: '/industry?index=2', name: '学生案例' },
-            { path: '/industry?index=3', name: '数字教材' },
-            { path: '/industry?index=4', name: '知识图谱' }
+            // { path: '/industry?index=0', name: '产教融合' },
+            // { path: '/industry?index=1', name: '城市体检' },
+            { path: '/industry?index=0', name: '数字教材' },
+            { path: '/industry?index=1', name: '学生案例' },
+            { path: '/industry?index=2', name: '教学案例' }
         ]
     },
     {
@@ -223,12 +289,14 @@ const menuList = ref([
 
     {
         path: '/popularization',
-        name: '评测考核试题库',
+        name: '虚拟仿真实训库',
         children: [
-            { path: '/popularization?index=0', name: '课程试题库' },
-            { path: '/popularization?index=1', name: '职业技能试题库' },
-            { path: '/popularization?index=2', name: '技能竞赛试题库' },
-            { path: '/popularization?index=3', name: '1+X证书测试题库' }
+            // { path: '/popularization?index=0', name: '课程试题库' },
+            // { path: '/popularization?index=1', name: '职业技能试题库' },
+            // { path: '/popularization?index=2', name: '技能竞赛试题库' },
+            // { path: '/popularization?index=3', name: '1+X证书测试题库' }
+            { path: '/popularization?index=0', name: '专业基础项目' },
+            { path: '/popularization?index=1', name: '专业核心项目' }
         ]
     },
     {
@@ -238,27 +306,25 @@ const menuList = ref([
             { path: '/research?index=0', name: '思政课程' },
             { path: '/research?index=1', name: '思政案例' }
         ]
-    }
-    /*   {
-        path: '/virtualSimulation',
-        name: '特色资源中心',
-        children: [
-            { path: '/virtualSimulation?index=0', name: '产教融合' },
-            { path: '/virtualSimulation?index=1', name: '城市体验' },
-            { path: '/virtualSimulation?index=2', name: '学生案例' },
-            { path: '/virtualSimulation?index=3', name: '数字教材' },
-            { path: '/virtualSimulation?index=3', name: '知识图谱' },
-        ]
     },
     {
-        path: '/internationalExchange',
-        name: '国际交流与合作',
-        children: [
-            { path: '/internationalExchange?index=0', name: '职教出海案例' },
-            { path: '/internationalExchange?index=1', name: '国际交流资源' },
-        ]
-    } */
+        path: '/knowledge',
+        name: '知识图谱',
+    },
 ]);
+
+const getPopupClassName = (name: string) => {
+    switch (name) {
+        case '课程中心':
+            return 'short-popup1';
+        case '特色资源中心':
+        case '产教融合中心':
+            return 'short-popup2';
+        case '国际交流与合作':
+            return 'short-popup3';
+    }
+};
+
 const logout = async () => {
     logoutApi(token.value).then((res: any) => {
         if (res.code == 200) {
@@ -284,11 +350,12 @@ const goRegister = () => {
         'noopener'
     );
 };
+
+const urlenmu = ['/home', '/sourceMaterial'];
 function turnToPage(path: string) {
-    if (path.includes('?')) {
-        path = path + '&index=0';
-    } else {
+    if (!path.includes('index') && !urlenmu.includes(path)) {
         path = path + '?index=0';
+    } else {
     }
     select(path);
     // router.push(path);
@@ -432,104 +499,90 @@ onMounted(() => {
 .tab-list {
     width: 100%;
     height: 70px;
-    display: flex;
-    align-items: flex-end;
+    // display: flex;
+    // align-items: flex-end;
     background-color: rgba($color: #fff, $alpha: 0.3);
     position: relative;
     z-index: 999;
 
-    .el-divider {
-        border-left: 1px solid rgba(93, 93, 93, 1);
-        margin: 4px 16px;
-        height: 24px !important;
-    }
-
-    :deep(.el-menu) {
-        background-color: rgba($color: #fff, $alpha: 0.3);
-        width: 100%;
-        border-bottom: none;
+    ul {
+        height: 70px;
+        display: flex;
         justify-content: center;
         align-items: center;
-        height: 70px !important;
-        font-family: 'SourceHanSansCN-Bold';
-
-        .el-menu-item,
-        .el-sub-menu {
+        li {
+            height: 70px;
+            line-height: 70px;
+            font-size: 18px;
+            cursor: pointer;
             position: relative;
-            padding: 0 26px;
-            height: 100%;
 
-            >.el-sub-menu__title {
-                padding: 0;
-                color: #000;
-            }
-        }
-
-        .el-menu-item,
-        .el-sub-menu__title {
-            font-size: 20px;
-            color: #000;
-            font-weight: bold;
-            text-align: center;
-            // &:hover {
-            //     border-radius: 8px;
-            //     outline: 0;
-            //     color: var(--el-menu-hover-text-color);
-            //     background-color: var(--el-menu-hover-bg-color);
-            // }
-        }
-
-        .el-menu-item,
-        .el-sub-menu {
-            &:hover {
-                background-color: #fff;
-                color: #000;
-
-                >.el-sub-menu__title {
-                    background-color: transparent;
-                    color: #000;
+            .nav-title {
+                font-weight: bold;
+                padding: 0 14px;
+                span {
+                    font-weight: bold;
+                    padding: 3px 10px;
+                    border-radius: 30px;
                 }
             }
-        }
-
-        .el-sub-menu__title>div {
-            font-weight: bold;
-        }
-
-        .el-sub-menu__icon-arrow {
-            display: none;
-        }
-
-        .is-active {
-            border-bottom: none;
-            height: 70px !important;
-
-            .el-sub-menu__title {
-                border-bottom: none;
+            .nav-title:hover {
+                // span {
+                    font-weight: bold;
+                    color: #fff;
+                    background-color: #2e90fa;
+                // }
             }
-
-            &::after {
-                content: attr(data-content);
-                height: 70px;
+            .nav-title:hover + .popup-box {
+                transform: scaleY(1) translate(-50%) !important;
+            }
+            .popup-box:hover {
+                transform: scaleY(1) translate(-50%) !important;
+            }
+            .popup-box {
+                min-width: 140px;
+                left: 50%;
+                transform-origin: 50% 0%;
+                transform: scaleY(0) translate(-50%);
+                display: inline-block;
+                white-space: nowrap;
                 position: absolute;
-                width: 100%;
-                top: 0;
-                left: 0;
-                background-color: #fff;
-                color: #000;
-                font-size: 20px;
-                text-align: center;
-                line-height: 70px;
-                font-weight: bold;
+                background: #fff;
+                backdrop-filter: blur(5px);
+                transition: 0.3s;
+                .popup-item {
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 40px;
+                    span {
+                        padding: 3px 8px;
+                        border-radius: 30px;
+                    }
+                }
+                .popup-item:hover {
+                    background-color: #2e90fa;
+                    color: #fff;
+                }
+                .popup-is-active {
+                    background-color: #2e90fa;
+                    color: #fff;
+                }
+            }
+            .short-popup1 {
+                min-width: 120px !important;
+            }
+            .short-popup2 {
+                min-width: 160px !important;
+            }
+            .short-popup3 {
+                min-width: 175px !important;
             }
         }
-
-        .el-menu-item.is-active,
-        .el-sub-menu.is-active .el-sub-menu__title {
-            border-radius: 8px;
-            font-weight: bold !important;
-            // background: rgba(0, 140, 255, 1);
-            // color: #fff !important;
+    }
+    .nav-is-active {
+        .nav-title {
+            color: #fff;
+            background-color: #2e90fa;
         }
     }
 }
@@ -624,31 +677,6 @@ onMounted(() => {
             line-height: 30px;
             text-align: left;
         }
-    }
-}
-</style>
-
-<style lang="scss">
-.layout-menu-popper .el-menu--popup {
-    min-width: 128px;
-    font-size: 20px;
-    opacity: 1;
-
-    .el-menu-item {
-        justify-content: center;
-        color: #000 !important;
-        font-size: 20px;
-        height: 50px !important;
-    }
-
-    .is-active {
-        background-color: #2e90fa !important;
-        color: #fff !important;
-    }
-
-    .el-menu-item:hover {
-        background-color: #2e90fa !important;
-        color: #fff !important;
     }
 }
 </style>

@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-19 17:18:37
+ * @LastEditTime: 2025-07-31 14:21:57
  * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\industry\index.vue
@@ -82,17 +82,24 @@ import { ztreeAll } from '@/assets/api/common';
 let route = useRoute();
 const router = useRouter();
 const tags = ref([
+    // {
+    //     id: 'dd5186e5-bb0f-44d3-bdce-3beb0e9bf786',
+    //     text: '产教融合',
+    //     type: '2',
+    //     icon: 'icon-chanpin'
+    // },
+    // {
+    //     id: 'ffe068d1-e94e-4779-95cf-6c6b7fd11fe9',
+    //     text: '城市体检',
+    //     type: '2',
+    //     icon: 'icon-chengshi'
+    // },
+    
     {
-        id: 'dd5186e5-bb0f-44d3-bdce-3beb0e9bf786',
-        text: '产教融合',
-        type: '2',
+        id: 'adedd809-31d0-42e1-a845-d1b652594b06',
+        text: '数字教材',
+        type: '1',
         icon: 'icon-chanpin'
-    },
-    {
-        id: 'ffe068d1-e94e-4779-95cf-6c6b7fd11fe9',
-        text: '城市体检',
-        type: '2',
-        icon: 'icon-chengshi'
     },
     {
         id: '93d95cd2-3b82-4b5a-84ef-6b9385d98e4f',
@@ -101,17 +108,17 @@ const tags = ref([
         icon: 'icon-wodekecheng'
     },
     {
-        id: 'adedd809-31d0-42e1-a845-d1b652594b06',
-        text: '数字教材',
+        id: 'dad9d674-b7f0-4236-af56-8a8f782079ee',
+        text: '教学案例',
         type: '1',
         icon: 'icon-shuzijiaocai'
     },
-    {
-        id: 'f097e5fd-5042-4992-a439-157ff555a756',
-        text: '知识图谱',
-        type: '3',
-        icon: 'icon-tuozhan'
-    }
+    // {
+    //     id: 'f097e5fd-5042-4992-a439-157ff555a756',
+    //     text: '知识图谱',
+    //     type: '3',
+    //     icon: 'icon-tuozhan'
+    // }
 ]);
 const total = ref(100);
 const tagsType = ref('1');
@@ -174,7 +181,7 @@ $--el-pagination-button-bg-color: '#fff';
 // 引入 Element UI 的主样式文件
 .page-box {
     .professional-banner {
-        background-image: url('@/assets/images/banner/industry-bg.png');
+        background-image: url('@/assets/images/banner/industry-bg.jpg');
         margin-top: -70px;
     }
 }

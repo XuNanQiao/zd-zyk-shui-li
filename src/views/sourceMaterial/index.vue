@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 10:28:03
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2025-04-23 17:56:12
+ * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\sourceMaterial\index.vue
  * 
@@ -174,7 +174,7 @@ $maxWidth: 1320px;
 .page-box {
     background-color: #fff !important;
     .professional-banner {
-        background-image: url('@/assets/images/banner/sourceMaterial-bg.png');
+        background-image: url('@/assets/images/banner/sourceMaterial-bg.jpg');
         margin-top: -70px;
     }
 

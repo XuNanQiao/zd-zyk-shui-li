@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2024-12-09 14:05:37
- * @LastEditors: 南桥几许
+ * @LastEditTime: 2025-04-23 17:58:22
+ * @LastEditors: JIANG
  * @Description: 
  * @FilePath: \shui-li\src\views\internationalExchange\index.vue
  * 
@@ -118,7 +118,7 @@ $--el-pagination-button-bg-color: '#fff';
 // 引入 Element UI 的主样式文件
 .page-box {
     .professional-banner {
-        background-image: url('@/assets/images/banner/internationalExchange-bg.png');
+        background-image: url('@/assets/images/banner/internationalExchange-bg.jpg');
         margin-top: -70px;
     }
 }
