@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2025-07-31 14:25:49
- * @LastEditors: JIANG
+ * @LastEditTime: 2025-10-14 10:32:02
+ * @LastEditors: ZHAO
  * @Description: 
  * @FilePath: \shui-li\src\layout\index.vue
  * 
@@ -262,9 +262,14 @@ const menuList = ref([
             // { path: '/trainingCenter?index=1', name: '创新创业培训' },
             // { path: '/trainingCenter?index=2', name: '赛证融通培训' },
             // { path: '/trainingCenter?index=3', name: '虚拟仿真培训' }
-            { path: '/trainingCenter?index=0', name: '城市体检' },
+           /*  { path: '/trainingCenter?index=0', name: '城市体检' },
             { path: '/trainingCenter?index=1', name: '试验检测员' },
-            { path: '/trainingCenter?index=2', name: '无损检测员' }
+            { path: '/trainingCenter?index=2', name: '无损检测员' } */
+              { path: '/trainingCenter?index=0', name: '材料检测' },
+            { path: '/trainingCenter?index=1', name: '钢结构检测' },
+            { path: '/trainingCenter?index=2', name: '地基桩基检测' },
+            { path: '/trainingCenter?index=3', name: '砌体结构检测' },
+            { path: '/trainingCenter?index=4', name: '混凝土结构检测' },
         ]
     },
     {

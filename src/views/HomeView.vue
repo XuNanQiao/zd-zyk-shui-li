@@ -1,8 +1,8 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-14 10:11:10
- * @LastEditTime: 2025-04-29 10:02:40
- * @LastEditors: JIANG
+ * @LastEditTime: 2025-10-14 10:28:49
+ * @LastEditors: ZHAO
  * @Description: 
  * @FilePath: \shui-li\src\views\HomeView.vue
  * 
@@ -235,7 +235,7 @@
         </div>
     </div>
     <div class="vr">
-        <div class="more-btn">查看更多</div>
+        <div class="more-btn"  @click="toNext('https://strs.icve.com.cn/blueroomDetail?info=eyJpZCI6IjQyNmEyNzUzZGQzZTQ3OTBiNmYzYzQ2MGEzMDY4MmJlIiwiaXNGb2N1cyI6ZmFsc2V9')">查看更多</div>
     </div>
     <div class="atlas">
         <div class="little-title">

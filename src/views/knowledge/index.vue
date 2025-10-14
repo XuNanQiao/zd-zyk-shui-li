@@ -1,8 +1,8 @@
 <!--
  * @Author: JIANG
  * @Date: 2025-07-31 14:37:09
- * @LastEditTime: 2025-09-15 16:49:15
- * @LastEditors: JIANG
+ * @LastEditTime: 2025-10-14 10:27:24
+ * @LastEditors: ZHAO
  * @Description: 
  * @FilePath: \shui-li\src\views\knowledge\index.vue
  * 
@@ -31,7 +31,12 @@
                 <div class="tag">{{bannerList[currentIndex].name}}</div>
                 <div class="content">
                     <div class="move-box" :style="{transition: isTr ? 'transform 0.5s' : 'none'}">
-                        <div class="item" v-for="(item,index) in bannerList" @click="toNext(item.url)" :key="index">
+                        <div
+                            class="item"
+                            v-for="(item,index) in bannerList"
+                            @click="toNext(item.url)"
+                            :key="index"
+                        >
                             <div class="img-box">
                                 <img class="img" :src="item.img" alt="" />
                             </div>
@@ -60,8 +65,6 @@ const bannerList = ref([
 		img: content4,
 		url: 'https://specialty3d.zhihuishu.com/courseDetail/1843599388807663616/1846102530539524096'
 	},
-
-
 	{
 		name: '建筑材料与检测',
 		img: content1,
@@ -127,7 +130,7 @@ const right = async () => {
 				currentIndex.value = 2;
 				content.style.transform = `translateX(-${currentIndex.value * (itemWidth + marginRight)}px)`;
 			});
-		})tianx
+		})
 	}
 }
 
