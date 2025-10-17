@@ -1,7 +1,7 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-10-17 15:15:00
- * @LastEditTime: 2025-10-14 10:42:53
+ * @LastEditTime: 2025-10-17 17:28:33
  * @LastEditors: ZHAO
  * @Description: 
  * @FilePath: \shui-li\src\views\trainingCenter\index.vue
@@ -82,6 +82,12 @@ import { ztreeAll } from '@/assets/api/common';
 let route = useRoute();
 const router = useRouter();
 const tags = ref([
+     {
+        id: '1792da15-dfe0-4e2f-940c-90d8be0816f7',
+        text: '城市体检',
+        type: '2',
+        icon: 'icon-xinrenkecheng'
+    },
     {
         id: '6bc05978-194d-4494-b8f6-0d4081abbedb',
         text: '材料检测',

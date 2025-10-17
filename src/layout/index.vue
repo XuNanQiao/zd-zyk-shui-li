@@ -265,11 +265,12 @@ const menuList = ref([
            /*  { path: '/trainingCenter?index=0', name: '城市体检' },
             { path: '/trainingCenter?index=1', name: '试验检测员' },
             { path: '/trainingCenter?index=2', name: '无损检测员' } */
-              { path: '/trainingCenter?index=0', name: '材料检测' },
-            { path: '/trainingCenter?index=1', name: '钢结构检测' },
-            { path: '/trainingCenter?index=2', name: '地基桩基检测' },
-            { path: '/trainingCenter?index=3', name: '砌体结构检测' },
-            { path: '/trainingCenter?index=4', name: '混凝土结构检测' },
+            { path: '/trainingCenter?index=0', name: '城市体检' },
+            { path: '/trainingCenter?index=1', name: '材料检测' },
+            { path: '/trainingCenter?index=2', name: '钢结构检测' },
+            { path: '/trainingCenter?index=3', name: '地基桩基检测' },
+            { path: '/trainingCenter?index=4', name: '砌体结构检测' },
+            { path: '/trainingCenter?index=5', name: '混凝土结构检测' },
         ]
     },
     {
