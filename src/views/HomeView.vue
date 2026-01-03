@@ -310,6 +310,16 @@
                         {{ item }}
                     </div>
                 </div>
+                  <div class="team-tag3"></div>
+                <div class="unit-box">
+                    <div
+                        class="school-item"
+                        v-for="item in projectInfo?.companyList"
+                    >
+                        <!-- <div v-html="item"></div> -->
+                        {{ item.unitName }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -356,6 +366,8 @@ const gatProjectInfo = () => {
         res.data.projectGroupInfo.presidingUnitName =
             res.data.projectGroupInfo.presidingUnitName.split(',');
         projectInfo.value = res.data;
+        console.log(projectInfo.value,"------projectInfo");
+        
     });
 };
 
@@ -1134,6 +1146,13 @@ onMounted(() => {
                 margin-bottom: 54px;
             }
 
+            .team-tag3 {
+                background-image: url("@/assets/images/home/teamTag3.png");
+                background-size: 100% 100%;
+                width: 393px;
+                height: 45px;
+                margin-bottom: 54px;
+            }
             .school-box,
             .unit-box {
                 display: flex;
