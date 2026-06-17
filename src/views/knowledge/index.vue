@@ -1,10 +1,10 @@
 <!--
  * @Author: JIANG
  * @Date: 2025-07-31 14:37:09
- * @LastEditTime: 2025-10-14 10:27:24
+ * @LastEditTime: 2026-06-17 12:49:05
  * @LastEditors: ZHAO
  * @Description: 
- * @FilePath: \shui-li\src\views\knowledge\index.vue
+ * @FilePath: \zd-zyk-shui-li\src\views\knowledge\index.vue
  * 
 -->
 <template>
@@ -111,9 +111,9 @@ const toNext = (url: string) => {
 const isTr = ref(true);
 
 
-const itemWidth = (document.querySelector('.item') as HTMLElement).offsetWidth;
+const itemWidth = (document.querySelector('.item') as HTMLElement)?.offsetWidth;
 const dom = document.querySelector('.item')
-const marginRight = parseInt(window.getComputedStyle(dom).marginRight);
+const marginRight =dom ? parseInt(window.getComputedStyle(dom).marginRight) : 0;
 const content = document.querySelector('.move-box') as HTMLElement;
 
 const right = async () => {
