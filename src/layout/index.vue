@@ -1,10 +1,10 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2025-10-14 10:32:02
+ * @LastEditTime: 2026-06-18 12:20:27
  * @LastEditors: ZHAO
  * @Description: 
- * @FilePath: \shui-li\src\layout\index.vue
+ * @FilePath: \zd-zyk-shui-li\src\layout\index.vue
  * 
 -->
 <template>
@@ -359,6 +359,10 @@ const goRegister = () => {
 
 const urlenmu = ['/home', '/sourceMaterial'];
 function turnToPage(path: string) {
+    if( path == '/knowledge'){
+        window.open('https://specialty3d.zhihuishu.com/home/1843599388807663616', '_blank', 'noreferrer');
+        return;
+    }
     if (!path.includes('index') && !urlenmu.includes(path)) {
         path = path + '?index=0';
     } else {
