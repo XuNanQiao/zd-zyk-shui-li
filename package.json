@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:prod": "vite build  --mode production",
+    "build:prod": "node version-bump.js && vite build  --mode production",
+    "build:prod:release": "node version-bump.js --release && vite build  --mode production",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{ts,js,vue} --fix",
     "test:unit": "vitest",

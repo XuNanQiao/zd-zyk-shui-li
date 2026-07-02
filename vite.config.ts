@@ -13,6 +13,18 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // https://vitejs.dev/config/
+
+// 读取版本号
+const fs = require('fs');
+const path = require('path');
+const versionFile = path.join(__dirname, '.env.version');
+let appVersion = '0.0.0-debug';
+if (fs.existsSync(versionFile)) {
+    const content = fs.readFileSync(versionFile, 'utf-8');
+    const match = content.match(/VITE_APP_VERSION=(.+)/);
+    if (match) appVersion = match[1];
+}
+
 export default defineConfig({
     base: './',
     plugins: [vue(), vueJsx()],
@@ -20,6 +32,9 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
+    },
+    define: {
+        __APP_VERSION__: JSON.stringify(appVersion)
     },
     // 服务端渲染
     server: {
