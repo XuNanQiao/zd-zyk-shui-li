@@ -1,10 +1,10 @@
 /*
  * @Author: ZHAO
  * @Date: 2024-01-10 16:42:49
- * @LastEditTime: 2024-11-13 11:43:53
- * @LastEditors: JIANG
+ * @LastEditTime: 2026-07-02 15:32:05
+ * @LastEditors: ZHAO
  * @Description:
- * @FilePath: \weifang-drone\vite.config.ts
+ * @FilePath: \zd-zyk-shui-li\vite.config.ts
  *
  */
 import { fileURLToPath, URL } from 'node:url';
@@ -15,8 +15,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 // https://vitejs.dev/config/
 
 // 读取版本号
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const versionFile = path.join(__dirname, '.env.version');
 let appVersion = '0.0.0-debug';
 if (fs.existsSync(versionFile)) {
