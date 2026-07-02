@@ -1,25 +1,27 @@
 <!--
  * @Author: ZHAO
  * @Date: 2024-01-12 16:39:21
- * @LastEditTime: 2026-06-18 12:20:27
+ * @LastEditTime: 2026-07-01 11:30:26
  * @LastEditors: ZHAO
- * @Description: 
+ * @Description: 响应式布局组件
  * @FilePath: \zd-zyk-shui-li\src\layout\index.vue
  * 
 -->
 <template>
-    <div class="header">
+    <div class="header" :class="{ 'mobile-header': isMobile }">
         <div class="header-left">
             <img class="hearer-logo" :src="logo ? logo : '/src/assets/images/logo.png'" />
-            <!-- <img class="hearer-logo" src="/src/assets/images/logo.png" /> -->
-            <div class="hearer-title">
+            <div class="hearer-title" v-if="!isMobile">
                 <div class="title" @click="goPage(`/home`)">土木工程检测技术教学资源库</div>
                 <div class="tips">
                     Teaching Resource Library for Civil Engineering Testing Technology
                 </div>
             </div>
+            <div class="hearer-title mobile-title" v-else @click="goPage(`/home`)">
+                <div class="title">土木工程检测技术教学资源库</div>
+            </div>
         </div>
-        <div class="header-right">
+        <div class="header-right" v-if="!isMobile">
             <div class="hearer-user flex" v-if="token">
                 <el-image class="user-img" :src="userInfo.avatar ? userInfo.avatar : ''" />
                 <div class="name" @click="toNext">{{ userInfo.nickName }}</div>
@@ -27,7 +29,6 @@
                 <div class="name" @click="logout">退出</div>
             </div>
             <div v-else class="hearer-user flex">
-                <!-- <img class="user-img" :src="sculpture" /> -->
                 <el-icon class="icon" @click="goLogin">
                     <User />
                 </el-icon>
@@ -36,9 +37,31 @@
                 <div class="name" @click="goRegister">注册</div>
             </div>
         </div>
+        <el-icon class="mobile-menu-icon" v-if="isMobile" @click="showMobileMenu = !showMobileMenu">
+            <Menu />
+        </el-icon>
     </div>
-    <div class="tab-list">
-        <ul type="none">
+    
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" v-if="isMobile && showMobileMenu">
+        <div class="mobile-menu-item" v-if="token">
+            <div class="user-info">
+                <el-image class="user-img" :src="userInfo.avatar ? userInfo.avatar : ''" />
+                <span>{{ userInfo.nickName }}</span>
+            </div>
+            <div class="menu-actions">
+                <div @click="toNext">进入后台</div>
+                <div @click="logout">退出</div>
+            </div>
+        </div>
+        <div class="mobile-menu-item" v-else>
+            <div @click="goLogin">登录</div>
+            <div @click="goRegister">注册</div>
+        </div>
+    </div>
+
+    <div class="tab-list" :class="{ 'mobile-tab': isMobile }">
+        <ul type="none" v-if="!isMobile">
             <li
                 :class="{ 'nav-is-active': defaultPath == item.path }"
                 v-for="item in menuList"
@@ -64,43 +87,16 @@
                 </div>
             </li>
         </ul>
-        <!-- <el-menu
-            :default-active="defaultActive"
-            popper-class="layout-menu-popper"
-            class="el-menu-popper-demo"
-            mode="horizontal"
-            :popper-offset="0"
-            @select="select"
-        >
-            <template v-for="(item, index) of menuList" :key="index">
-                <el-sub-menu
-                    :index="item.path"
-                    v-if="item.children && item.children.length > 0"
-                    :data-content="item.name"
-                >
-                    <template #title>
-                        <div @click="turnToPage(item.path)">
-                            {{ item.name }}
-                        </div>
-                    </template>
-                    <el-menu-item
-                        v-for="(chil, chilIndex) of item.children"
-                        :key="chilIndex"
-                        :index="chil.path"
-                        >{{ chil.name }}</el-menu-item
-                    >
-                </el-sub-menu>
-                <el-menu-item
-                    v-else
-                    :index="item.path"
-                    :data-content="item.name"
-                    >{{ item.name }}</el-menu-item
-                >
-            </template>
-        </el-menu> -->
     </div>
-    <router-view></router-view>
-    <div class="footer">
+    
+    <!-- 移动端底部导航 -->
+    <MobileNav v-if="isMobile" />
+    
+    <div class="content-wrapper" :class="{ 'mobile-content': isMobile }">
+        <router-view></router-view>
+    </div>
+    
+    <div class="footer" v-if="!isMobile">
         <div class="footer-inner">
             <div class="top">
                 <div class="footer-left">
@@ -181,15 +177,25 @@
                     <span>技术支持:</span>
                     <a href="javascript:;"></a>
                 </div>
+                <span style="margin-left: 20px;">版本号：{{ __APP_VERSION__ }}</span>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import { ref, computed, getCurrentInstance, onMounted } from 'vue';
+import { ref, computed, getCurrentInstance, onMounted, onUnmounted } from 'vue';
 import { useUserStore } from '@/stores/user';
+import MobileNav from './MobileNav.vue';
 const { proxy } = getCurrentInstance();
 const sculpture = computed(() => useUserStore().sculpture);
+
+// 声明全局变量
+declare const __APP_VERSION__: string;
+
+// 页面跳转函数
+const goPage = (path: string) => {
+    router.push(path);
+};
 import { useRouter, useRoute } from 'vue-router';
 const router = useRouter();
 const route = useRoute();
@@ -390,13 +396,26 @@ const getCookie = (name: string) => {
 
 const userInfo = ref<any>(undefined);
 const token = ref();
+const isMobile = ref(false);
+const showMobileMenu = ref(false);
+
 const toNext = () => {
     window.open('https://zyk.icve.com.cn/icve-admin/index', '_blank', 'noreferrer');
 };
 const logo = ref();
 
+// 响应式处理
+const handleResize = () => {
+    isMobile.value = window.innerWidth <= 768;
+    if (!isMobile.value) {
+        showMobileMenu.value = false;
+    }
+};
+
 const linksList = ref();
 onMounted(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     getLink().then((res: any) => {
         linksList.value = res.list
@@ -425,6 +444,10 @@ onMounted(() => {
             userInfo.value = res.user;
         });
     });
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize);
 });
 </script>
 <style scoped lang="scss">
@@ -506,11 +529,93 @@ onMounted(() => {
     }
 }
 
+.mobile-header {
+    width: 100%;
+    padding: 0 15px;
+    height: 60px;
+
+    .header-left {
+        margin-right: 0;
+        flex: 1;
+
+        .hearer-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+        }
+
+        .mobile-title {
+            flex: 1;
+
+            .title {
+                font-size: 16px;
+                letter-spacing: 1px;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .mobile-menu-icon {
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+    }
+}
+
+.mobile-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 10px 0;
+
+    .mobile-menu-item {
+        padding: 0 20px;
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+
+            .user-img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            span {
+                font-size: 14px;
+                color: #333;
+            }
+        }
+
+        .menu-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+
+            div {
+                padding: 8px 20px;
+                font-size: 14px;
+                color: #666;
+                cursor: pointer;
+
+                &:hover {
+                    color: #2E90FA;
+                }
+            }
+        }
+    }
+}
+
 .tab-list {
     width: 100%;
     height: 70px;
-    // display: flex;
-    // align-items: flex-end;
     background-color: rgba($color: #fff, $alpha: 0.3);
     position: relative;
     z-index: 999;
@@ -537,11 +642,9 @@ onMounted(() => {
                 }
             }
             .nav-title:hover {
-                // span {
-                    font-weight: bold;
-                    color: #fff;
-                    background-color: #2e90fa;
-                // }
+                font-weight: bold;
+                color: #fff;
+                background-color: #2e90fa;
             }
             .nav-title:hover + .popup-box {
                 transform: scaleY(1) translate(-50%) !important;
@@ -595,6 +698,19 @@ onMounted(() => {
             background-color: #2e90fa;
         }
     }
+}
+
+.mobile-tab {
+    display: none;
+}
+
+.content-wrapper {
+    min-height: calc(100vh - 155px);
+}
+
+.mobile-content {
+    min-height: calc(100vh - 60px);
+    padding-bottom: 60px;
 }
 
 .footer {

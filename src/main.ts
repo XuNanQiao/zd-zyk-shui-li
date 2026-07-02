@@ -15,9 +15,11 @@ import { getTokenFromCookie, saveTokenToCookie } from '@/utils/cookie';
 import { useUserStore } from '@/stores/user';
 import { LoginApi } from '@/assets/api/login';
 import mitt from 'mitt';
+import { initRem } from '@/utils/responsive';
 import App from './App.vue';
 import router from './router';
 import './utils/rem';
+initRem();
 
 import 'element-plus/dist/index.css';
 import './assets/main.css';
